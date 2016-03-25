@@ -7,7 +7,7 @@
   j2ee-spec="5.0"
   archive="test333.war">
   <attributes>
-    <attribute name="webrootdir" value="/src/WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 
