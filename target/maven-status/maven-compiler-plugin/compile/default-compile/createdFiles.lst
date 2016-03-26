@@ -1,0 +1,6 @@
+org\luojj\model\Student.class
+org\luojj\dao\StudentMapper.class
+org\luojj\dao\IStudentDao.class
+org\luojj\controller\StudentController.class
+org\luojj\service\IStudentService.class
+org\luojj\service\impl\StudentServiceImpl.class
