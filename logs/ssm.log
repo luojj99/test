@@ -4707,4 +4707,10 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
   [INFO] [2016-04-07 10:40:41][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
   [INFO] [2016-04-07 10:40:43][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
   [INFO] [2016-04-07 10:40:43][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Thu Apr 07 10:40:41 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-07 11:07:02][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-07 11:07:03][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Thu Apr 07 11:07:03 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-07 11:07:03][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-07 11:07:03][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-07 11:07:06][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-07 11:07:06][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Thu Apr 07 11:07:03 CST 2016]; root of context hierarchy
   
