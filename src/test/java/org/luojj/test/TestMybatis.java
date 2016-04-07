@@ -42,9 +42,9 @@ public class TestMybatis {
   
     @Test  
     public void test1() {  
-//        Student student = studentService.getStudentById(1);  
-//        logger.info(JSON.toJSONString(student));  
-//    	  helloWorldController.test();
+        Student student = studentService.getStudentById(1);  
+        logger.info(JSON.toJSONString(student));  
+    	  helloWorldController.test();
 //        System.out.println("1111111111");
 //        Assert.assertEquals("aaa", aaa.getName());
     }  
