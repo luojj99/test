@@ -4,6 +4,8 @@ package org.luojj.test;
 
 
 import org.apache.log4j.Logger;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.luojj.controller.HelloWorldController;
@@ -46,7 +48,7 @@ public class TestMybatis {
         logger.info(JSON.toJSONString(student));  
     	  helloWorldController.test();
 //        System.out.println("1111111111");
-//        Assert.assertEquals("aaa", aaa.getName());
+        Assert.assertEquals("男", student.getGender());
     }  
     
     

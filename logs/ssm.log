@@ -4713,4 +4713,66 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
   [INFO] [2016-04-07 11:07:03][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
   [INFO] [2016-04-07 11:07:06][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
   [INFO] [2016-04-07 11:07:06][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Thu Apr 07 11:07:03 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 16:54:23][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 16:54:23][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@7b811ce0: startup date [Fri Apr 08 16:54:23 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 16:54:24][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 16:54:24][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 16:54:26][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 16:54:26][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@7b811ce0: startup date [Fri Apr 08 16:54:23 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 17:19:29][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 17:19:30][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@7b811ce0: startup date [Fri Apr 08 17:19:30 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 17:19:30][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 17:19:30][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 17:19:31][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 17:19:31][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@7b811ce0: startup date [Fri Apr 08 17:19:30 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:10:26][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 20:10:26][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:10:26 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:10:26][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 20:10:26][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 20:10:27][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 20:10:27][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:10:26 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:13:33][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 20:13:34][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:13:34 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:13:34][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 20:13:34][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 20:13:36][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 20:13:36][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:13:34 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:20:24][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 20:20:25][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@7b811ce0: startup date [Fri Apr 08 20:20:25 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:20:25][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 20:20:25][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 20:20:26][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 20:20:26][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@7b811ce0: startup date [Fri Apr 08 20:20:25 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:41:02][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 20:41:02][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:41:02 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:41:02][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 20:41:02][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 20:41:03][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 20:41:03][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:41:02 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:44:57][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 20:44:58][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Fri Apr 08 20:44:58 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:44:58][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 20:44:58][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 20:44:59][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 20:44:59][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Fri Apr 08 20:44:58 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:57:09][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 20:57:09][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:57:09 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 20:57:09][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 20:57:09][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 20:57:10][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 20:57:10][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Fri Apr 08 20:57:09 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 22:11:58][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-08 22:11:58][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Fri Apr 08 22:11:58 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-08 22:11:58][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-08 22:11:58][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-08 22:11:59][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]Mapped "{[/helloworld/index],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void org.luojj.controller.HelloWorldController.test()
+  [INFO] [2016-04-08 22:11:59][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-08 22:11:59][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@2f32f43d: startup date [Fri Apr 08 22:11:58 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-09 02:19:31][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-09 02:19:32][org.springframework.context.support.GenericApplicationContext]Refreshing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Sat Apr 09 02:19:32 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-09 02:19:33][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-09 02:19:33][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-09 02:19:34][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]Mapped "{[/helloworld/index],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public void org.luojj.controller.HelloWorldController.test()
+  [INFO] [2016-04-09 02:19:36][org.luojj.test.TestMybatis]{"gender":"男","id":1,"name":"张三"}
+  [INFO] [2016-04-09 02:19:36][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@598ef578: startup date [Sat Apr 09 02:19:32 CST 2016]; root of context hierarchy
   
