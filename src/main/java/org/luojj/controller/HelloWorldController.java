@@ -1,19 +1,55 @@
 package org.luojj.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.luojj.model.Student;
+import org.luojj.service.IStudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
 @Controller
 @RequestMapping("/helloworld")
 public class HelloWorldController {
+	
+	@Autowired
+	@Qualifier("studentService")
+    private IStudentService studentService;
 
     @RequestMapping("/index")
     public void test(){
     	System.out.println("test");
     }
+    
+    @RequestMapping("/showUser")
+	public void toIndex(HttpServletRequest request,Model model){
+		int userId = Integer.parseInt(request.getParameter("id"));
+		String password= request.getParameter("password");
+		Student student = this.studentService.getStudentById(userId);
+		if (student.getId()==userId&&student.getName().equals(password)) {
+			System.out.println("login success");
+		}
+		
+		
+	}
+    
+    
+    
+//	@RequestMapping(value = "{name}", method = RequestMethod.GET)
+//	public @ResponseBody
+//	Student getShopInJSON(@PathVariable String name) {
+//
+//		Student student = new Student();
+//		shop.setName(name);
+//		shop.setStaffName(new String[] { "mkyong1", "mkyong2" });
+//		System.out.println("test");
+//		return shop;
+//
+//	}
 
 //@Override
 //protected ModelAndView handleRequestInternal(HttpServletRequest arg0,
