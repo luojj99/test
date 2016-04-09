@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/helloworld")
 public class HelloWorldController {
-	static int count =0;
 	@Autowired
 	@Qualifier("studentService")
     private IStudentService studentService;
 
     @RequestMapping("/index")
     public void test(){
-    	System.out.println("test"+(count++));
+    	System.out.println("test");
     }
     
     @RequestMapping("/showUser")
@@ -33,7 +32,7 @@ public class HelloWorldController {
 		String password= request.getParameter("pas3sword");
 		Student student = this.studentService.getStudentById(userId);
 		if (student.getId()==userId&&student.getName().equals(password)) {
-			System.out.println("login success"+(count++));
+			System.out.println("login success");
 		}
 		
 		
