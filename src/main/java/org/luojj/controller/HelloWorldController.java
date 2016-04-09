@@ -1,5 +1,7 @@
 package org.luojj.controller;
 
+import java.util.concurrent.CountDownLatch;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.luojj.model.Student;
@@ -15,23 +17,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/helloworld")
 public class HelloWorldController {
-	
+	static int count =0;
 	@Autowired
 	@Qualifier("studentService")
     private IStudentService studentService;
 
     @RequestMapping("/index")
     public void test(){
-    	System.out.println("test");
+    	System.out.println("test"+(count++));
     }
     
     @RequestMapping("/showUser")
 	public void toIndex(HttpServletRequest request,Model model){
 		int userId = Integer.parseInt(request.getParameter("id"));
-		String password= request.getParameter("password");
+		String password= request.getParameter("pas3sword");
 		Student student = this.studentService.getStudentById(userId);
 		if (student.getId()==userId&&student.getName().equals(password)) {
-			System.out.println("login success");
+			System.out.println("login success"+(count++));
 		}
 		
 		
