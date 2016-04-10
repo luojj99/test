@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
@@ -20,37 +24,44 @@ public class HelloWorldController {
 	@Autowired
 	@Qualifier("studentService")
     private IStudentService studentService;
-
-    @RequestMapping("/index")
-    public void test(){
-    	System.out.println("test");
-    }
-    
-    @RequestMapping("/showUser")
-	public void toIndex(HttpServletRequest request,Model model){
-		int userId = Integer.parseInt(request.getParameter("id"));
-		String password= request.getParameter("pas3sword");
+	
+	
+	@RequestMapping(value="/student/id/{id}/password/{password}",method=RequestMethod.GET)
+	public @ResponseBody Student toIndex(@PathVariable String id,
+			@PathVariable String password){
+		int userId = Integer.parseInt(id);
 		Student student = this.studentService.getStudentById(userId);
 		if (student.getId()==userId&&student.getName().equals(password)) {
 			System.out.println("login success");
+			return student;
+		}else{
+			System.out.println("fail");
+			
+			return null;
 		}
-		
+			
 		
 	}
+
+    @RequestMapping("/indexx")
+    public void test(){
+    	System.out.println("test");
+    }
+   
+//    +----+-------------+--------+
+//    | id | name        | gender |
+//    +----+-------------+--------+
+//    |  1 | 18000000000 | 男     |
+//    |  2 | 123         | 女     |
+//    +----+-------------+--------+
+
     
     
     
-//	@RequestMapping(value = "{name}", method = RequestMethod.GET)
-//	public @ResponseBody
-//	Student getShopInJSON(@PathVariable String name) {
-//
-//		Student student = new Student();
-//		shop.setName(name);
-//		shop.setStaffName(new String[] { "mkyong1", "mkyong2" });
-//		System.out.println("test");
-//		return shop;
-//
-//	}
+    
+    
+    
+    
 
 //@Override
 //protected ModelAndView handleRequestInternal(HttpServletRequest arg0,

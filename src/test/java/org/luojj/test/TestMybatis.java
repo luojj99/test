@@ -47,9 +47,14 @@ public class TestMybatis {
         Student student = studentService.getStudentById(1);  
         logger.info(JSON.toJSONString(student));  
     	  helloWorldController.test();
-//        System.out.println("1111111111");
         Assert.assertEquals("男", student.getGender());
     }  
+    
+    
+    @Test
+    public void testHelloWorldController(){
+    	
+    }
     
     
     
