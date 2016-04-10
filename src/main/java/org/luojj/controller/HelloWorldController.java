@@ -29,7 +29,7 @@ public class HelloWorldController {
     @RequestMapping("/showUser")
 	public void toIndex(HttpServletRequest request,Model model){
 		int userId = Integer.parseInt(request.getParameter("id"));
-		String password= request.getParameter("pas3sword");
+		String password= request.getParameter("password");
 		Student student = this.studentService.getStudentById(userId);
 		if (student.getId()==userId&&student.getName().equals(password)) {
 			System.out.println("login success");
