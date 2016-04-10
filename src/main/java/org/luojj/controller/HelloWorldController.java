@@ -24,12 +24,14 @@ public class HelloWorldController {
 	@Autowired
 	@Qualifier("studentService")
     private IStudentService studentService;
+
 	
 	
 	@RequestMapping(value="/student/id/{id}/password/{password}",method=RequestMethod.GET)
 	public @ResponseBody Student toIndex(@PathVariable String id,
 			@PathVariable String password){
 		int userId = Integer.parseInt(id);
+
 		Student student = this.studentService.getStudentById(userId);
 		if (student.getId()==userId&&student.getName().equals(password)) {
 			System.out.println("login success");
