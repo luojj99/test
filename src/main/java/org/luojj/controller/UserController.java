@@ -27,7 +27,7 @@ public class UserController {
         User user=userService.checkLogin(phoneNumber, loginPassword);
         if(user!=null){
         	logger.info("login success");
-        	
+        	//fsdfs
             return user;          
         }
         logger.info("login fail");
