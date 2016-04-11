@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.luojj.controller.HelloWorldController;
+import org.luojj.controller.UserController;
 import org.luojj.model.Student;
 import org.luojj.model.User;
 import org.luojj.service.IStudentService;
@@ -34,6 +35,9 @@ public class TestMybatis {
 	@Autowired
 	@Qualifier("studentService")
     private IStudentService studentService;
+	
+	@Autowired
+	private UserController userController;
 	
 	@Autowired
 	private IUserService userService;
@@ -63,11 +67,11 @@ public class TestMybatis {
     	System.out.println(1111111111);
     }
     
-//    @Test
-//    public void testRepeatPhoneNumber(){
-//    	User user=userService.register("13800138000", "123");
-//    	logger.info(JSON.toJSONString(user));
-//    }
+    @Test
+    public void test_isRegistered(){
+    	boolean isRegistered=userService.isRegistered("13800138000");
+    	Assert.assertEquals(true, isRegistered);
+    }
     
     
     

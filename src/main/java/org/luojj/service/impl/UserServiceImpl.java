@@ -71,6 +71,50 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		return userDao.selectByPrimaryKey(id);
 	}
+
+	@Override
+	public boolean isRegistered(String phoneNumber) {
+		// TODO Auto-generated method stub
+		User user=userDao.getUserByPhoneNumber(phoneNumber);
+		if (user==null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public User register(String phoneNumber) {
+		// TODO Auto-generated method stub
+		String value=phoneNumber;  
+		int i=0;
+		User user;
+		String regExp = "^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$";  
+		  
+		Pattern p = Pattern.compile(regExp);  
+		  
+		Matcher m = p.matcher(value);  
+		
+		boolean isPhoneNumberValid = m.find();
+		
+		if (isPhoneNumberValid) {
+			user = new User();
+			user.setPhoneNumber(phoneNumber);
+			
+			try {
+				i=userDao.insert(user);
+				if (i==1) {
+					user=userDao.getUserByPhoneNumber(phoneNumber);
+					return user;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				
+			}
+		}
+		
+		return null;
+	}
 	
 	
 	
