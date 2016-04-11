@@ -40,12 +40,13 @@ public class UserController {
     
     
     
-    
+	@ResponseBody
     @RequestMapping(value="/register/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
-    public @ResponseBody boolean register(@PathVariable String phoneNumber,
+    public  User register(@PathVariable String phoneNumber,
     		@PathVariable String loginPassword)  {
-    	boolean flag=userService.register(phoneNumber, loginPassword);
-    	return flag;
+    	User user=userService.register(phoneNumber, loginPassword);
+    	
+    	return user;
     	
     }
     

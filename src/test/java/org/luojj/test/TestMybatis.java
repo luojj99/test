@@ -63,6 +63,12 @@ public class TestMybatis {
     	System.out.println(1111111111);
     }
     
+//    @Test
+//    public void testRepeatPhoneNumber(){
+//    	User user=userService.register("13800138000", "123");
+//    	logger.info(JSON.toJSONString(user));
+//    }
+    
     
     
     
