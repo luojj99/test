@@ -31,16 +31,15 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping(value="isRegistered/{phoneNumber}",method=RequestMethod.GET)
-	public String isRegistered(@PathVariable String phoneNumber){
+	public boolean isRegistered(@PathVariable String phoneNumber){
 		 isRegistered=userService.isRegistered(phoneNumber);
 		 logger.info(isRegistered);
 		this.phoneNumber=phoneNumber;
 		if (isRegistered) {
 			
-			return "registered";
+			return true;
 		}
-//		userService.register(phoneNumber);
-		return "unRegistered";
+		return false;
 	}
 	
 	@ResponseBody
