@@ -37,10 +37,10 @@ public class UserController {
 		this.phoneNumber=phoneNumber;
 		if (isRegistered) {
 			
-			return "registered";
+			return JSON.toJSONString("registered");
 			
 		}
-		return "unregistered";
+		return JSON.toJSONString("unregistered");
 	}
 	
 	@ResponseBody

@@ -2,7 +2,7 @@ package org.luojj.dao;
 
 import org.luojj.model.User;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 
 
 
