@@ -19,10 +19,12 @@
     <mvc:annotation-driven/>
   	<context:component-scan base-package="org.luojj.*"/>
     <!-- 引入配置文件 -->  
-    <bean id="propertyConfigurer"  
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="location" value="classpath:jdbc.properties" />  
-    </bean>  
+    
+     <bean id="propertyConfigurer"  
+	        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	        <property name="location" value="classpath:jdbc-product-dev.properties" />  
+	 </bean>
+    
    
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
@@ -63,5 +65,11 @@
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
         <property name="dataSource" ref="dataSource" />  
     </bean>  
+    
+ 
+	   
+  
+    
+    
   
 </beans>  

@@ -1,5 +1,5 @@
-#Thu Mar 31 20:44:03 CST 2016
+#Mon Apr 11 10:47:39 CST 2016
 eclipse.preferences.version=1
-encoding//src/main/resources/jdbc.properties=UTF-8
+encoding//src/main/resources/jdbc-product-dev.properties=UTF-8
 encoding//src/main/resources/log4j.properties=UTF-8
 encoding/<project>=UTF-8
