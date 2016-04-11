@@ -13,6 +13,7 @@ import org.luojj.model.Student;
 import org.luojj.model.User;
 import org.luojj.service.IStudentService;
 import org.luojj.service.IUserService;
+import org.luojj.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
@@ -71,6 +72,12 @@ public class TestMybatis {
     public void test_isRegistered(){
     	boolean isRegistered=userService.isRegistered("13800138000");
     	Assert.assertEquals(true, isRegistered);
+    }
+    
+    @Test
+    public void test_json(){
+    	String jsonString=JsonUtil.String2Json("aaa");
+    	logger.info(jsonString);
     }
     
     
