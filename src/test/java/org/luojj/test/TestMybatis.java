@@ -76,7 +76,7 @@ public class TestMybatis {
     
     @Test
     public void test_json(){
-    	String jsonString=JsonUtil.String2Json("aaa");
+    	String jsonString=JsonUtil.msg2Json("aaa");
     	logger.info(jsonString);
     }
     

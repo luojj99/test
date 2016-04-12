@@ -1,4 +1,4 @@
-package org.luojj.dao;
+package org.luojj.model;
 
 public class Message {
 	private String message;

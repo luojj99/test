@@ -1,8 +1,8 @@
 package org.luojj.util;
 
 public class JsonUtil {
-	public static String String2Json(String content){
+	public static String msg2Json(String content){
 		
-		return "{\""+content+"\"}";
+		return "{\"message\":\""+content+"\"}";
 	}
 }

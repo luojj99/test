@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import javax.json.Json;
 
 import org.apache.log4j.Logger;
-import org.luojj.dao.Message;
+import org.luojj.model.Message;
 import org.luojj.model.User;
 import org.luojj.service.IUserService;
 import org.luojj.util.JsonUtil;
@@ -51,8 +51,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value="choose/{loginPassword}")
 	public User choseLoginORRegeister(@PathVariable String loginPassword){
-		logger.info("start");
-		logger.info(isRegistered);
+		
 		if (isRegistered) {
 			return login(loginPassword);
 		}
@@ -76,7 +75,7 @@ public class UserController {
     }
     
     
-    public  User register( String loginPassword)  {
+    public  User register(String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user!=null) {
 			logger.info("success"+JSON.toJSONString(user));
