@@ -11,10 +11,12 @@ import org.luojj.entity.User;
 import org.luojj.service.IUserService;
 import org.springframework.aop.ThrowsAdvice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 @Service
+@Transactional
 public class UserServiceImpl implements IUserService{
 	@Resource
     private UserDao userDao;

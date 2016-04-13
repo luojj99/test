@@ -47,11 +47,20 @@ public class UserController {
 		return JsonUtil.msg2Json("unregistered");
 	}
 	
-	
 	@ResponseBody
-	@RequestMapping(value="login/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
-    public  User login(@PathVariable String phoneNumber,
-    		@PathVariable String loginPassword)  {
+	@RequestMapping(value="choose/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
+	public User choose(@PathVariable String phoneNumber,
+    		@PathVariable String loginPassword){
+		boolean isRegistered = userService.isRegistered(phoneNumber);
+		if (isRegistered) {
+			return login(phoneNumber, loginPassword);
+		}else{
+			return register(phoneNumber, loginPassword);
+		}
+	}
+	
+	
+    public  User login( String phoneNumber, String loginPassword)  {
 			
 			 User user=userService.checkLogin(phoneNumber,loginPassword);
 		        if(user==null){
@@ -62,10 +71,7 @@ public class UserController {
        
     }
     
-	@ResponseBody
-	@RequestMapping(value="register/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
-    public  User register(@PathVariable String phoneNumber,
-    		@PathVariable String loginPassword)  {
+    public  User register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
     		user = new User("fail");
