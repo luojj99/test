@@ -1,8 +1,14 @@
 package org.luojj.test;
 
+
+//注意：import static 的spring类  post  get  
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 import java.sql.SQLException;
@@ -39,10 +45,10 @@ public class TestMybatis {
 	private static Logger logger = Logger.getLogger(TestMybatis.class);
 	// private ApplicationContext ac = null;
 
-	// @Autowired
-	// private WebApplicationContext wac;
-	//  
-	// private MockMvc mockMvc;
+	 @Autowired
+	 private WebApplicationContext wac;
+	  
+	 private MockMvc mockMvc;
 
 	// 模拟request,response
 	private MockHttpServletRequest request;
@@ -108,7 +114,7 @@ public class TestMybatis {
 	}
 
 	@Test
-	public void testLogin() throws Exception {
+	public void testIsRegistered() throws Exception {
 		String username = "";
 		String password = "";
 
@@ -116,4 +122,16 @@ public class TestMybatis {
 		logger.info(jsonString);
 
 	}
+	
+
+	 @Test    
+	    public void testLogin() {    
+	          
+//	        try {
+//				mockMvc.perform(get("isRegistered/{phonenNumber}","13800138000")).andExpect(status().isOk()).andDo(print());
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+	    }   
 }
