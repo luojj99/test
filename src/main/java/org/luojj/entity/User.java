@@ -1,4 +1,4 @@
-package org.luojj.model;
+package org.luojj.entity;
 
 import java.util.Date;
 

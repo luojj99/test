@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.luojj.controller.UserController;
 import org.luojj.dao.UserDao;
-import org.luojj.model.User;
+import org.luojj.entity.User;
 import org.luojj.service.IUserService;
 import org.luojj.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 // 表示继承了SpringJUnit4ClassRunner类 ,用于配置spring中测试的环境
@@ -115,18 +116,34 @@ public class TestMybatis {
 
 	@Test
 	public void testIsRegistered() throws Exception {
-		String username = "";
-		String password = "";
+		
 
-		String jsonString = userController.isRegistered("13800138000");
-		logger.info(jsonString);
-
+		logger.info(userController.isRegistered("13800138000"));
+		
+		
+		
 	}
 	
+	@Test
+	public void testLogin(){
+		
+		User user2=userController.login("13800138000", "456");
+		logger.info(JSON.toJSONString(user2));
+	}
+	
+//	@Test
+//	public void testRegister(){
+//		User user=userController.register("13800138001", "456");
+//		logger.info(JSON.toJSONString(user));
+//	}
+	
+	
+	
+	
 
-	 @Test    
-	    public void testLogin() {    
-	          
+//	 @Test    
+//	    public void testLogin() {    
+//	          
 //	        try {
 //				mockMvc.perform(get("isRegistered/{phonenNumber}","13800138000")).andExpect(status().isOk()).andDo(print());
 //			} catch (Exception e) {
@@ -134,4 +151,4 @@ public class TestMybatis {
 //				e.printStackTrace();
 //			}
 	    }   
-}
+

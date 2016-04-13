@@ -1,4 +1,4 @@
-package org.luojj.model;
+package org.luojj.entity;
 
 public class Message {
 	private String message;

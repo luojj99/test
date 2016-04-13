@@ -1,6 +1,6 @@
 package org.luojj.dao;
 
-import org.luojj.model.User;
+import org.luojj.entity.User;
 
 public interface UserDao {
     /**

@@ -1,6 +1,6 @@
 package org.luojj.listener;
 
-import org.luojj.model.User;
+import org.luojj.entity.User;
 
 public interface OnLoginListener {
 	public void onSuccess(User user);

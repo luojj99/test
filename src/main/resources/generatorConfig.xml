@@ -8,9 +8,11 @@
 	3、jdbc.properties
 	 -->
 
-
     <!-- 引入配置文件 -->  
     <properties resource="jdbc.properties"/>  
+    
+    
+    
     <classPathEntry location="D:/java/apache-maven-3.3.9-bin/repository/mysql/mysql-connector-java/5.1.35/mysql-connector-java-5.1.35.jar" />
     <!-- 一个数据库一个context -->  
     <context id="infoGuardian">  
@@ -35,7 +37,7 @@
         </javaTypeResolver>  
           
         <!-- 生成实体类地址 -->    
-        <javaModelGenerator targetPackage="org.luojj.model"  
+        <javaModelGenerator targetPackage="org.luojj.entity"  
             targetProject="src/main/java" >  
             <!-- 是否在当前路径下新加一层schema,eg：false路径org.luojj.model， true:org.luojj.model.[schemaName] -->  
             <property name="enableSubPackages" value="false"/>  
@@ -60,8 +62,8 @@
         
              
          <!-- 配置表信息 -->      
-        <table  tableName="user_info"  
-            domainObjectName="User" enableCountByExample="false"  
+        <table  tableName="${tableName}"  
+            domainObjectName="${entityName}" enableCountByExample="false"  
             enableDeleteByExample="false" enableSelectByExample="false"  
             enableUpdateByExample="false">  
             <!--  tableName为对应的数据库表 domainObjectName是要生成的实体类名(要大写)， enable*ByExample   
