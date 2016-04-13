@@ -22,7 +22,7 @@
     
      <bean id="propertyConfigurer"  
 	        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-	        <property name="location" value="classpath:jdbc-product-dev.properties" />  
+	        <property name="location" value="classpath:jdbc.properties" />  
 	 </bean>
     
    
@@ -47,8 +47,8 @@
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->  
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />  
-        <!-- 自动扫描mapping.xml文件 -->  
-        <property name="mapperLocations" value="classpath*:*Dao.xml"></property>  
+        <!-- 自动扫描mapper.xml文件 -->  
+        <property name="mapperLocations" value="classpath*:*Mapper.xml"></property>  
       
     </bean>  
   	

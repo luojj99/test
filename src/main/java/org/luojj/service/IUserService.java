@@ -14,6 +14,6 @@ public interface IUserService {
     public User register(String phoneNumber, String loginPassword) ;
     public User register(String phoneNumber) ;
 
-    public User getUserById(Long id);
+   
     public boolean isRegistered(String phoneNumber);
 }

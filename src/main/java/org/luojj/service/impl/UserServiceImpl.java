@@ -23,11 +23,14 @@ public class UserServiceImpl implements IUserService{
     public User checkLogin(String phoneNumber, String loginPassword) {
         //根据用户名实例化用户对象
     	
-        User user = userDao.getUserByPhoneNumber(phoneNumber);
+        User user = userDao.selectByPrimaryKey(phoneNumber);
+       
         if (user != null && user.getLoginPassword().equals(loginPassword)) {
             return user;
+        }else{
+        	return null;
         }
-        return null;
+       
     }
     
 	@Override
@@ -52,7 +55,7 @@ public class UserServiceImpl implements IUserService{
 			try {
 				i=userDao.insert(user);
 				if (i==1) {
-					user=userDao.getUserByPhoneNumber(phoneNumber);
+					user=userDao.selectByPrimaryKey(phoneNumber);
 					return user;
 				}
 			} catch (Exception e) {
@@ -66,16 +69,12 @@ public class UserServiceImpl implements IUserService{
 	
 	}
 
-	@Override
-	public User getUserById(Long id) {
-		// TODO Auto-generated method stub
-		return userDao.selectByPrimaryKey(id);
-	}
 
+	
 	@Override
 	public boolean isRegistered(String phoneNumber) {
 		// TODO Auto-generated method stub
-		User user=userDao.getUserByPhoneNumber(phoneNumber);
+		User user=userDao.selectByPrimaryKey(phoneNumber);
 		if (user==null) {
 			return false;
 		}
@@ -103,7 +102,7 @@ public class UserServiceImpl implements IUserService{
 			try {
 				i=userDao.insert(user);
 				if (i==1) {
-					user=userDao.getUserByPhoneNumber(phoneNumber);
+					user=userDao.selectByPrimaryKey(phoneNumber);
 					return user;
 				}
 			} catch (Exception e) {
