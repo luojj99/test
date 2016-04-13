@@ -50,7 +50,8 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping(value="login/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
-    public  User login(String phoneNumber,String loginPassword)  {
+    public  User login(@PathVariable String phoneNumber,
+    		@PathVariable String loginPassword)  {
 			
 			 User user=userService.checkLogin(phoneNumber,loginPassword);
 		        if(user==null){
@@ -63,7 +64,8 @@ public class UserController {
     
 	@ResponseBody
 	@RequestMapping(value="register/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
-    public  User register(String phoneNumber,String loginPassword)  {
+    public  User register(@PathVariable String phoneNumber,
+    		@PathVariable String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
     		user = new User("fail");
