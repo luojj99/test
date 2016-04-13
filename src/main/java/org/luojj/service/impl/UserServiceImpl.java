@@ -63,7 +63,7 @@ public class UserServiceImpl implements IUserService{
 		if (isPhoneNumberValid) {
 			user = new User();
 			user.setPhoneNumber(phoneNumber);
-			
+			user.setLoginPassword(loginPassword);
 			try {
 				i=userDao.insert(user);
 				if (i==1) {

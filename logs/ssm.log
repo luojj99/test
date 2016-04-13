@@ -4023,4 +4023,19 @@ Caused by: java.lang.ClassNotFoundException: Cannot find class: org.luojj.model.
   [INFO] [2016-04-14 02:20:17][org.luojj.controller.UserController]true
   [INFO] [2016-04-14 02:20:17][org.luojj.test.TestMybatis]{"message":"registered"}
   [INFO] [2016-04-14 02:20:17][org.springframework.web.context.support.GenericWebApplicationContext]Closing org.springframework.web.context.support.GenericWebApplicationContext@67d1a6b3: startup date [Thu Apr 14 02:19:41 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-14 03:27:55][org.springframework.beans.factory.xml.XmlBeanDefinitionReader]Loading XML bean definitions from URL [file:/C:/Users/lenovo/git/test333/test333/target/classes/spring-mybatis.xml]
+  [INFO] [2016-04-14 03:27:55][org.springframework.web.context.support.GenericWebApplicationContext]Refreshing org.springframework.web.context.support.GenericWebApplicationContext@67d1a6b3: startup date [Thu Apr 14 03:27:55 CST 2016]; root of context hierarchy
+  [INFO] [2016-04-14 03:27:55][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer]Loading properties file from class path resource [jdbc.properties]
+  [INFO] [2016-04-14 03:27:55][org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor]JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+  [INFO] [2016-04-14 03:27:56][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]Mapped "{[/isRegistered/{phoneNumber}],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public java.lang.String org.luojj.controller.UserController.isRegistered(java.lang.String)
+  [INFO] [2016-04-14 03:27:56][org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping]Mapped "{[/choose/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}],methods=[GET],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public org.luojj.entity.User org.luojj.controller.UserController.choose(java.lang.String,java.lang.String)
+  [INFO] [2016-04-14 03:28:00][org.luojj.controller.UserController]{"message":"password error"}
+  [INFO] [2016-04-14 03:28:00][org.luojj.test.TestMybatis]{"message":"password error"}
+  [INFO] [2016-04-14 03:28:00][org.luojj.test.TestMybatis]{"message":"aaa"}
+  [INFO] [2016-04-14 03:28:00][org.luojj.test.TestMybatis]testNull
+  [INFO] [2016-04-14 03:28:00][org.luojj.test.TestMybatis]{"bankCardNumber":"6222980023658351","createTime":1460469029000,"gender":"男","idCardNumber":"441423199223242715","loginPassword":"123","phoneNumber":"13800138000","tradingPassword":"456","userName":"张三"}
+  [INFO] [2016-04-14 03:28:00][org.luojj.test.TestMybatis]{"bankCardNumber":"6222980023658351","createTime":1460469029000,"gender":"男","idCardNumber":"441423199223242715","loginPassword":"123","phoneNumber":"13800138000","tradingPassword":"456","userName":"张三"}
+  [INFO] [2016-04-14 03:28:00][org.luojj.controller.UserController]true
+  [INFO] [2016-04-14 03:28:00][org.luojj.test.TestMybatis]{"message":"registered"}
+  [INFO] [2016-04-14 03:28:01][org.springframework.web.context.support.GenericWebApplicationContext]Closing org.springframework.web.context.support.GenericWebApplicationContext@67d1a6b3: startup date [Thu Apr 14 03:27:55 CST 2016]; root of context hierarchy
   
