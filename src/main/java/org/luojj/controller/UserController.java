@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSON;
 
 
 
+
 @Controller
 public class UserController extends BasicController{
 	 private static Logger logger = Logger.getLogger(UserController.class);  
@@ -63,6 +64,7 @@ public class UserController extends BasicController{
 		        if(user==null){
 		        	return  FAIL("password error");
 		        	
+
 		        }
 		        SUCCESS(user);
 		        logger.info(JSON.toJSONString(user));
@@ -73,7 +75,7 @@ public class UserController extends BasicController{
     public  BasicObject register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
-			return  FAIL("register fail");
+
 		}
 		SUCCESS(user);
     	logger.info(JSON.toJSONString(user));
