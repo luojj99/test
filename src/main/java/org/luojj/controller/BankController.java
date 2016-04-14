@@ -1,5 +1,6 @@
 package org.luojj.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.luojj.dao.BankCardDao;
 
