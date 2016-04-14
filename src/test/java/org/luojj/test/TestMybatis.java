@@ -119,9 +119,6 @@ public class TestMybatis {
 		
 
 		logger.info(userController.isRegistered("13800138000"));
-		
-		
-		
 	}
 	
 	@Test
@@ -130,6 +127,8 @@ public class TestMybatis {
 		User user2=userController.login("13800138000", "456");
 		logger.info(JSON.toJSONString(user2));
 	}
+	
+	
 	
 //	@Test
 //	public void testRegister(){
