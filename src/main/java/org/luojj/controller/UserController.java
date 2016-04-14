@@ -65,7 +65,8 @@ public class UserController {
 			 User user=userService.checkLogin(phoneNumber,loginPassword);
 		        if(user==null){
 		        	
-		        user=new User().setMessage("password error");
+		        user=new User();
+		        user.setMessage("password error");
 		        }
 		        logger.info(JSON.toJSONString(user));
 		        return user;
@@ -75,7 +76,8 @@ public class UserController {
     public  User register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
-		user=new User().setMessage("register success");
+		user=new User();
+		user=setMessage("register success");
 		}
     	logger.info(JSON.toJSONString(user));
     	return user;
