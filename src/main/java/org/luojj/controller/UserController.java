@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 
 
@@ -77,7 +77,7 @@ public class UserController {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
 		user=new User();
-		user=setMessage("register success");
+		user.setMessage("register success");
 		}
     	logger.info(JSON.toJSONString(user));
     	return user;
