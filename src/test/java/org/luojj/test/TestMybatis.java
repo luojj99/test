@@ -124,8 +124,7 @@ public class TestMybatis {
 	@Test
 	public void testLogin(){
 		
-		User user2=(User) userController.login("13800138000", "456");
-		logger.info(JSON.toJSONString(user2));
+		
 	}
 	
 	
