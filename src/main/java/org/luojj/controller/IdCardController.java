@@ -1,7 +1,7 @@
 package org.luojj.controller;
 
 
-import org.luojj.util.JsonUtil;
+import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

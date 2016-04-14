@@ -23,7 +23,7 @@ import org.luojj.controller.UserController;
 import org.luojj.dao.UserDao;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
-import org.luojj.util.JsonUtil;
+import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -97,7 +97,7 @@ public class TestMybatis {
 
 	@Test
 	public void test_json() {
-		String jsonString = JsonUtil.msg2Json("aaa");
+		String jsonString = Util.Str2Json("aaa");
 		logger.info(jsonString);
 	}
 
@@ -124,7 +124,7 @@ public class TestMybatis {
 	@Test
 	public void testLogin(){
 		
-		User user2=userController.login("13800138000", "456");
+		User user2=(User) userController.login("13800138000", "456");
 		logger.info(JSON.toJSONString(user2));
 	}
 	

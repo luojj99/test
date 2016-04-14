@@ -307,9 +307,5 @@ public class User extends BasicObject{
 
 	
 
-	@Override
-	public void setMessage(String message) {
-		// TODO Auto-generated method stub
-		super.message=message;
-	}
+	
 }

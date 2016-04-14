@@ -1,6 +1,5 @@
 package org.luojj.service.impl;
 
-import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,11 +8,11 @@ import javax.annotation.Resource;
 import org.luojj.dao.UserDao;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
+
 
 @Service
 @Transactional
@@ -23,7 +22,7 @@ public class UserServiceImpl implements IUserService{
 
    
 	
-	@Override
+	
 	public boolean isRegistered(String phoneNumber) {
 		// TODO Auto-generated method stub
 		User user=userDao.selectByPrimaryKey(phoneNumber);
@@ -33,7 +32,7 @@ public class UserServiceImpl implements IUserService{
 		return true;
 	}
 
-	@Override
+	
 	public User checkLogin(String phoneNumber, String loginPassword) {
 		// TODO Auto-generated method stub
 		User user = userDao.selectByPrimaryKey(phoneNumber);
@@ -46,7 +45,7 @@ public class UserServiceImpl implements IUserService{
      
 	}
 
-	@Override
+	
 	public User register(String phoneNumber, String loginPassword) {
 		// TODO Auto-generated method stub
 		String value=phoneNumber;  
@@ -79,6 +78,12 @@ public class UserServiceImpl implements IUserService{
 		
 		return null;
 
+	}
+
+
+	public int updateUser(User user) {
+		// TODO Auto-generated method stub
+		return userDao.updateByPrimaryKey(user);
 	}
 	
 	

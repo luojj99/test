@@ -1,8 +1,8 @@
 package org.luojj.service;
 
-import java.sql.SQLException;
-
 import org.luojj.entity.User;
+
+
 
 
 
@@ -13,4 +13,5 @@ public interface IUserService {
     public boolean isRegistered(String phoneNumber);
     public User checkLogin(String phoneNumber,String loginPassword);
     public User register(String phoneNumber,String loginPassword);
+    public int updateUser(User user);
 }

@@ -1,13 +1,16 @@
 package org.luojj.controller;
 
+
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
+import org.luojj.baseclass.BasicObject;
 import org.luojj.dao.BankCardDao;
 
 
 import org.luojj.entity.BankCard;
 
-import org.luojj.util.JsonUtil;
+import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +25,7 @@ import com.alibaba.fastjson.JSONObject;
 
 @Controller
 @RequestMapping("/bankCard")
-public class BankController {
+public class BankController extends BasicController{
 	private static Logger logger = Logger.getLogger(BankController.class);  
 	@Autowired
 	private BankCardDao bankCardDao;
@@ -34,10 +37,10 @@ public class BankController {
 		int status=bankCardDao.insert(bankCard);
 		if (status==1) {
 			 logger.info("insert success");
-			 return JsonUtil.msg2Json("insert success");
+			 return Util.Str2Json("insert success");
 		}
 		logger.info("insert fail");
-		return JsonUtil.msg2Json("insert fail");
+		return Util.Str2Json("insert fail");
 	}
 	
 	@ResponseBody
@@ -47,17 +50,22 @@ public class BankController {
 		
 		if (status==1) {
 			logger.info("delete success");
-			return JsonUtil.msg2Json("delete success");
+			return Util.Str2Json("delete success");
 		}else{
 			logger.info("delete fail");
-			return JsonUtil.msg2Json("delete fail");
+			return Util.Str2Json("delete fail");
 		}
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/select/{phoneNumber}",method=RequestMethod.GET)
-	public BankCard selectByPhoneNumber(@PathVariable String phoneNumber){
-		logger.info(JSON.toJSONString(bankCardDao.selectByPrimaryKey(phoneNumber)));
-		return bankCardDao.selectByPrimaryKey(phoneNumber);
+	public BasicObject selectByPhoneNumber(@PathVariable String phoneNumber){
+		BankCard bankCard = bankCardDao.selectByPrimaryKey(phoneNumber);
+		if (bankCard==null) {
+			return  FAIL("bankcard null");
+		}
+		SUCCESS(bankCard);
+		logger.info(JSON.toJSONString(bankCard));
+		return bankCard;
 	}
 }
