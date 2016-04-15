@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -42,10 +43,14 @@ public class BankController extends BasicController{
 	 */
 	@ResponseBody
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
-	public BasicObject insertBankCard(@ModelAttribute BankCard bankCard){
+	public BasicObject insertBankCard(@ModelAttribute BankCard bankCard,
+			@RequestParam(value="tradingPassword") String tradingPassword){
 		try {
 			int status=bankCardDao.insert(bankCard);
-			if (status==1&&userDao.selectByPrimaryKey(bankCard.getPhoneNumber())!=null) {
+			User user=userDao.selectByPrimaryKey(bankCard.getPhoneNumber());
+			user.setTradingPassword(tradingPassword);
+			int status2=userDao.updateByPrimaryKey(user);
+			if (status==1&&user!=null&&status2==1) {
 				
 				return SUCCESS("insert success");
 			}

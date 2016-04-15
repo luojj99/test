@@ -2,8 +2,10 @@ package org.luojj.entity;
 
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.luojj.baseclass.BasicObject;
 
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class User extends BasicObject
 {
     /**

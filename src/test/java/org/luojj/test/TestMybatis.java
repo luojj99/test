@@ -19,8 +19,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.luojj.controller.BankController;
 import org.luojj.controller.UserController;
 import org.luojj.dao.UserDao;
+import org.luojj.entity.BankCard;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
 import org.luojj.service.impl.UserServiceImpl;
@@ -61,6 +63,9 @@ public class TestMybatis {
 
 	@Autowired
 	private UserController userController;
+	
+	@Autowired
+	private BankController bankController;
 
 	@Autowired
 	private IUserService userService;
@@ -104,6 +109,14 @@ public class TestMybatis {
 	public void charachterEncoding(){
 		String genderString=userDao.selectByPrimaryKey("13800138000").getGender();
 //		assertEquals("男", genderString);
+	}
+	
+	@Test
+	public void test_insertBankCard(){
+		BankCard bankCard = new BankCard();
+		bankCard.setBankCardNumber("6666666666");
+		bankCard.setPhoneNumber("13800138010");
+		bankController.insertBankCard(bankCard, "999");
 	}
 	
 	
