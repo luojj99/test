@@ -11,7 +11,8 @@ import static org.luojj.util.Util.FAIL;
 
 public class BasicController {
 	/**
-	 * 正确信息处理
+	 * 正确信息处理（包括用户信息）
+	 * 
 	 * @param basicObject
 	 * @return
 	 */
@@ -19,9 +20,21 @@ public class BasicController {
 		return Util.SUCCESS(basicObject);
 	}
 	
+	/**
+	 * 正确信息处理（不包括用户信息）message被暂时注销
+	 * 
+	 * @param message
+	 * @return
+	 */
 	public static BasicObject SUCCESS(String message){
 		return Util.SUCCESS(message);
 	}
+	
+	public static BasicObject SUCCESS(){
+		return Util.SUCCESS();
+	}
+	
+	
 	
 	/**
 	 * 错误信息处理

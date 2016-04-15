@@ -20,7 +20,20 @@ private static Logger logger = Logger.getLogger(Util.class);
 		return basicObject;
 	}
 	
+	/**
+	 * message被暂时注销 不起作用
+	 * @param message
+	 * @return
+	 */
 	public static BasicObject SUCCESS(String message){
+		BasicObject basicObject = new BasicObject();
+		basicObject.setErrorCode(0);
+//		basicObject.setMessage(message);
+		logger.info(JSON.toJSONString(basicObject));
+		return basicObject;
+	}
+	
+	public static BasicObject SUCCESS(){
 		BasicObject basicObject = new BasicObject();
 		basicObject.setErrorCode(0);
 		

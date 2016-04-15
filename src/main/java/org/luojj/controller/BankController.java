@@ -6,9 +6,11 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BasicObject;
 import org.luojj.dao.BankCardDao;
+import org.luojj.dao.UserDao;
 
 
 import org.luojj.entity.BankCard;
+import org.luojj.entity.User;
 
 import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,32 +31,47 @@ public class BankController extends BasicController{
 	private static Logger logger = Logger.getLogger(BankController.class);  
 	@Autowired
 	private BankCardDao bankCardDao;
+	@Autowired
+	private UserDao userDao;
 	
+	
+	//触发器insertBankCardNumber：插入银行卡的时候同时在user_info插入卡号
 	@ResponseBody
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
-	public String insertBankCard(@ModelAttribute BankCard bankCard){
-		
-		int status=bankCardDao.insert(bankCard);
-		if (status==1) {
-			 logger.info("insert success");
-			 return Util.Str2Json("insert success");
+	public BasicObject insertBankCard(@ModelAttribute BankCard bankCard){
+		try {
+			int status=bankCardDao.insert(bankCard);
+			if (status==1&&userDao.selectByPrimaryKey(bankCard.getPhoneNumber())!=null) {
+				
+				return SUCCESS("insert success");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
 		}
-		logger.info("insert fail");
-		return Util.Str2Json("insert fail");
+		return FAIL("insert fail");
+		
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
-	public String deleteBankCard(@ModelAttribute BankCard bankCard){
-		int status= bankCardDao.deleteByPrimaryKey(bankCard.getPhoneNumber());
-		
-		if (status==1) {
-			logger.info("delete success");
-			return Util.Str2Json("delete success");
-		}else{
-			logger.info("delete fail");
-			return Util.Str2Json("delete fail");
+	public BasicObject deleteBankCard(@ModelAttribute BankCard bankCard){
+		try {
+			int status= bankCardDao.deleteByPrimaryKey(bankCard.getPhoneNumber());
+			
+			if (status==1) {
+				logger.info("delete success");
+				return SUCCESS("delete success");
+			}
+				
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
+		logger.info("delete fail");
+		return FAIL("delete fail");
 	}
 	
 	@ResponseBody

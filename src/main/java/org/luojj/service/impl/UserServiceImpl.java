@@ -85,6 +85,12 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		return userDao.updateByPrimaryKey(user);
 	}
+
+
+	public User getUser(String phoneNumber) {
+		// TODO Auto-generated method stub
+		return userDao.selectByPrimaryKey(phoneNumber);
+	}
 	
 	
 	

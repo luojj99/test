@@ -122,10 +122,12 @@ public class TestMybatis {
 	}
 	
 	@Test
-	public void testLogin(){
-		
-		
+	public void charachterEncoding(){
+		String genderString=userDao.selectByPrimaryKey("13800138000").getGender();
+		assertEquals("男", genderString);
 	}
+	
+	
 	
 	
 	

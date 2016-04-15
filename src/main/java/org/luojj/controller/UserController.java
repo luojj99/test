@@ -40,7 +40,6 @@ public class UserController extends BasicController{
 		if (isRegistered) {
 			
 			return Util.Str2Json("registered");
-			
 		}
 		return Util.Str2Json("unregistered");
 	}
@@ -63,8 +62,6 @@ public class UserController extends BasicController{
 			 User user=userService.checkLogin(phoneNumber,loginPassword);
 		        if(user==null){
 		        	return  FAIL("password error");
-		        	
-
 		        }
 		        SUCCESS(user);
 		        logger.info(JSON.toJSONString(user));
@@ -75,23 +72,39 @@ public class UserController extends BasicController{
     public  BasicObject register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
-
+    		return FAIL("register fail");
 		}
 		SUCCESS(user);
     	logger.info(JSON.toJSONString(user));
     	return user;
     	
     }
+    
     @ResponseBody
-    @RequestMapping(value="/user/updateMsg",method=RequestMethod.GET)
+    @RequestMapping(value="/user/update",method=RequestMethod.GET)
     public BasicObject updateUser(@ModelAttribute User user){
-    	int status=userService.updateUser(user);
-    	if (status==1) {
-			return SUCCESS("update success");
-		}else {
-			return FAIL("update fail");
+    	try {
+    		int status=userService.updateUser(user);
+        	if (status==1) {
+    			return SUCCESS("update success");
+    		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-    	
+		return FAIL("update fail");
+    }
+    
+    
+    @ResponseBody
+    @RequestMapping(value="/user/select/{phoneNumber}",method=RequestMethod.GET)
+    public BasicObject getUser(@PathVariable String phoneNumber){
+    	User user =  userService.getUser(phoneNumber);
+    	if (user==null) {
+			return FAIL("user null");
+		}else{
+			return SUCCESS(user);
+		}
     }
 
 	

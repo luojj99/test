@@ -14,4 +14,5 @@ public interface IUserService {
     public User checkLogin(String phoneNumber,String loginPassword);
     public User register(String phoneNumber,String loginPassword);
     public int updateUser(User user);
+    public User getUser(String phoneNumber);
 }
