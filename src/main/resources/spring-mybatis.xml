@@ -16,14 +16,38 @@
     <!-- 在web.xml中，加载顺序为：context-param -> listener -> filter -> servlet -->
     <!-- 所以是先加载spring-mybatis.xml，再加载spring-mvc.xml，所以在使用自动扫描注解（<context:component-scan/>）的时候，
     	必须先在spring-maybatis.xml写，在spring-mvc.xml则写不写无所谓 -->
-  
      <!-- 该标签将自动开启“注解实现Bean依赖注入”支持.这条语句是扫描org.luojj下被@XXX(如 @Component, @Service, @Repository)
-   		    注解的那些类，并进行实例化。 --> 
-    <mvc:annotation-driven/>
+   		    注解的那些类，并进行实例化。 -->   
+    <mvc:annotation-driven>
+        <!-- 强化参数接收 -->
+        <mvc:argument-resolvers>
+            <bean class="org.durcframework.common.form.FormModelMethodArgumentResolver" />
+        </mvc:argument-resolvers>
+          
+        <mvc:message-converters>  
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+                <property name="objectMapper">  
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <!-- 处理responseBody 里面日期类型 --> 
+                        <property name="dateFormat">  
+                            <bean class="java.text.SimpleDateFormat">  
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />  
+                            </bean>  
+                        </property> 
+                        <!-- 为null字段时不显示 -->
+                        <property name="serializationInclusion">
+                            <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+                        </property> 
+                    </bean>  
+                </property>  
+            </bean>  
+        </mvc:message-converters>  
+    </mvc:annotation-driven>
     
     
     
-     <!-- enables scanning for @Transactional annotations -->
+    
+     <!-- 事务注解enables scanning for @Transactional annotations -->
 	<tx:annotation-driven/>
   	<context:component-scan base-package="org.luojj.*"/>
     <!-- 引入配置文件 -->  
