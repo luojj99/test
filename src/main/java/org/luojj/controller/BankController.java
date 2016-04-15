@@ -44,11 +44,14 @@ public class BankController extends BasicController{
 	@ResponseBody
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	public BasicObject insertBankCard(@ModelAttribute BankCard bankCard,
-			@RequestParam(value="tradingPassword") String tradingPassword){
+			@RequestParam(value="tradingPassword") String tradingPassword,
+			@RequestParam(value="idCardNumber") String idCardNumber){
 		try {
 			int status=bankCardDao.insert(bankCard);
 			User user=userDao.selectByPrimaryKey(bankCard.getPhoneNumber());
 			user.setTradingPassword(tradingPassword);
+			user.setRealName(bankCard.getRealName());
+			user.setIdCardNumber(idCardNumber);
 			int status2=userDao.updateByPrimaryKey(user);
 			if (status==1&&user!=null&&status2==1) {
 				

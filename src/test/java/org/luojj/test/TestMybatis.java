@@ -113,10 +113,14 @@ public class TestMybatis {
 	
 	@Test
 	public void test_insertBankCard(){
-		BankCard bankCard = new BankCard();
-		bankCard.setBankCardNumber("6666666666");
-		bankCard.setPhoneNumber("13800138010");
-		bankController.insertBankCard(bankCard, "999");
+//		String phoneNumber="13800138012";
+//		
+//		userController.choose(phoneNumber, "555");
+//		BankCard bankCard = new BankCard();
+//		bankCard.setBankCardNumber("77777");
+//		bankCard.setPhoneNumber(phoneNumber);
+//		
+//		bankController.insertBankCard(bankCard, "999","441423199245");
 	}
 	
 	
