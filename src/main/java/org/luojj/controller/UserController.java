@@ -35,7 +35,10 @@ public class UserController extends BasicController{
     private IUserService userService;
 	
 	/** 
+	 *  解决部分更新问题
 	 *  有 @ModelAttribute 标记的方法, 会在每个目标方法执行之前被 SpringMVC 调用!  
+	 *  该方法会从数据库拉取数据，然后放在map中，springmvc就会把从参数获取得到的bean也添加到map中，
+	 *  把从参数获取得到的bean的空字段和拉取的bean合并
 	 */  
 	@ModelAttribute  
 	public void getUser(@RequestParam(value="phoneNumber",required=false) String phoneNumber,   
@@ -102,9 +105,6 @@ public class UserController extends BasicController{
     @RequestMapping(value="/user/update",method=RequestMethod.GET)
     public BasicObject updateUser(@ModelAttribute User user){
     	try {
-    		User user2=userService.getUser(user.getPhoneNumber());
-    		logger.info(JSON.toJSONString(user2));
-    		logger.info(JSON.toJSONString(user));
     		int status=userService.updateUser(user);
     		User user3=userService.getUser(user.getPhoneNumber());
     		logger.info(JSON.toJSONString(user3));

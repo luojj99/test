@@ -123,7 +123,12 @@ public class TestMybatis {
 //		bankController.insertBankCard(bankCard, "999","441423199245");
 	}
 	
-	
+	@Test
+	public void test_deleteBankCard(){
+		BankCard bankCard = new BankCard();
+		bankCard.setPhoneNumber("13800138012");
+		bankController.deleteBankCard(bankCard);
+	}
 	
 	
 }

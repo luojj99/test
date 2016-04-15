@@ -66,10 +66,10 @@ public class BankController extends BasicController{
 		
 	}
 	
-	@ModelAttribute
+	
 	@ResponseBody
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
-	public BasicObject deleteBankCard( BankCard bankCard){
+	public BasicObject deleteBankCard(@ModelAttribute BankCard bankCard){
 		try {
 			int status= bankCardDao.deleteByPrimaryKey(bankCard.getPhoneNumber());
 			
