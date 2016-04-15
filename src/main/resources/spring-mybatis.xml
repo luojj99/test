@@ -20,6 +20,9 @@
      <!-- 该标签将自动开启“注解实现Bean依赖注入”支持.这条语句是扫描org.luojj下被@XXX(如 @Component, @Service, @Repository)
    		    注解的那些类，并进行实例化。 --> 
     <mvc:annotation-driven/>
+    
+    
+    
      <!-- enables scanning for @Transactional annotations -->
 	<tx:annotation-driven/>
   	<context:component-scan base-package="org.luojj.*"/>

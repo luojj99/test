@@ -85,8 +85,7 @@ public class TestMybatis {
 	public void testUserlogin() {
 		// User user = userService.getUserById(1L);
 		User user = userService.checkLogin("13800138000", "123");
-		logger.info(JSON.toJSONString(user));
-		System.out.println(1111111111);
+		assertEquals("13800138000", user.getPhoneNumber());
 	}
 
 	@Test
@@ -94,33 +93,12 @@ public class TestMybatis {
 		boolean isRegistered = userService.isRegistered("13800138000");
 		Assert.assertEquals(true, isRegistered);
 	}
-
-	@Test
-	public void test_json() {
-		String jsonString = Util.Str2Json("aaa");
-		logger.info(jsonString);
-	}
-
-	@Test
-	public void testNull() {
-		logger.info("testNull");
-		User user = userDao.selectByPrimaryKey("13800138000");
-		if (user == null) {
-			user = new User();
-			user.setUserName("为空");
-		}
-
-		logger.info(JSON.toJSONString(user));
-
-	}
-
-	@Test
-	public void testIsRegistered() throws Exception {
-		
-
-		logger.info(userController.isRegistered("13800138000"));
-	}
 	
+
+	
+	/**
+	 * 乱码测试
+	 */
 	@Test
 	public void charachterEncoding(){
 		String genderString=userDao.selectByPrimaryKey("13800138000").getGender();
@@ -129,26 +107,11 @@ public class TestMybatis {
 	
 	
 	
+}
 	
-	
-//	@Test
-//	public void testRegister(){
-//		User user=userController.register("13800138001", "456");
-//		logger.info(JSON.toJSONString(user));
-//	}
 	
 	
 	
 	
 
-//	 @Test    
-//	    public void testLogin() {    
-//	          
-//	        try {
-//				mockMvc.perform(get("isRegistered/{phonenNumber}","13800138000")).andExpect(status().isOk()).andDo(print());
-//			} catch (Exception e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-	    }   
 
