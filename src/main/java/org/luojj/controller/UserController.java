@@ -4,6 +4,7 @@ package org.luojj.controller;
 
 
 
+import org.apache.ibatis.annotations.Options;
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BasicObject;
 import org.luojj.entity.User;
@@ -11,6 +12,7 @@ import org.luojj.service.IUserService;
 import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +33,7 @@ public class UserController extends BasicController{
 	@Autowired
     private IUserService userService;
 	
-	
+	@Options(flushCache=true)
 	@ResponseBody
 	@RequestMapping(value="isRegistered/{phoneNumber}",method=RequestMethod.GET)
 	public BasicObject isRegistered(@PathVariable String phoneNumber){
@@ -44,6 +46,7 @@ public class UserController extends BasicController{
 		return FAIL("unregistered");
 	}
 	
+	@Options(flushCache=true)
 	@ResponseBody
 	@RequestMapping(value="choose/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
 	public BasicObject choose(@PathVariable String phoneNumber,
