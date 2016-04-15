@@ -34,14 +34,14 @@ public class UserController extends BasicController{
 	
 	@ResponseBody
 	@RequestMapping(value="isRegistered/{phoneNumber}",method=RequestMethod.GET)
-	public String isRegistered(@PathVariable String phoneNumber){
+	public BasicObject isRegistered(@PathVariable String phoneNumber){
 		 boolean isRegistered=userService.isRegistered(phoneNumber);
 		 logger.info(isRegistered);
 		if (isRegistered) {
 			
-			return Util.Str2Json("registered");
+			return SUCCESS("registered");
 		}
-		return Util.Str2Json("unregistered");
+		return FAIL("unregistered");
 	}
 	
 	@ResponseBody
@@ -84,6 +84,7 @@ public class UserController extends BasicController{
     @RequestMapping(value="/user/update",method=RequestMethod.GET)
     public BasicObject updateUser(@ModelAttribute User user){
     	try {
+    		
     		int status=userService.updateUser(user);
         	if (status==1) {
     			return SUCCESS("update success");
