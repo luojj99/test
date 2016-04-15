@@ -4,19 +4,20 @@ package org.luojj.controller;
 
 
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Options;
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BasicObject;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
-import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
@@ -33,7 +34,19 @@ public class UserController extends BasicController{
 	@Autowired
     private IUserService userService;
 	
-	@Options(flushCache=true)
+	/** 
+	 *  有 @ModelAttribute 标记的方法, 会在每个目标方法执行之前被 SpringMVC 调用!  
+	 */  
+	@ModelAttribute  
+	public void getUser(@RequestParam(value="phoneNumber",required=false) String phoneNumber,   
+	        Map<String, Object> map){  
+	    logger.info("modelAttribute method");  
+	    if(phoneNumber != null){  
+	        User user=userService.getUser(phoneNumber);  
+	        map.put("user", user);  
+	    }  
+	}  
+	
 	@ResponseBody
 	@RequestMapping(value="isRegistered/{phoneNumber}",method=RequestMethod.GET)
 	public BasicObject isRegistered(@PathVariable String phoneNumber){
@@ -74,6 +87,7 @@ public class UserController extends BasicController{
     
     public  BasicObject register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
+    	
     	if (user==null) {
     		return FAIL("register fail");
 		}
@@ -83,12 +97,17 @@ public class UserController extends BasicController{
     	
     }
     
+    
     @ResponseBody
     @RequestMapping(value="/user/update",method=RequestMethod.GET)
     public BasicObject updateUser(@ModelAttribute User user){
     	try {
-    		
+    		User user2=userService.getUser(user.getPhoneNumber());
+    		logger.info(JSON.toJSONString(user2));
+    		logger.info(JSON.toJSONString(user));
     		int status=userService.updateUser(user);
+    		User user3=userService.getUser(user.getPhoneNumber());
+    		logger.info(JSON.toJSONString(user3));
         	if (status==1) {
     			return SUCCESS("update success");
     		}
