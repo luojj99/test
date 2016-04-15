@@ -35,7 +35,11 @@ public class BankController extends BasicController{
 	private UserDao userDao;
 	
 	
-	//触发器insertBankCardNumber：插入银行卡的时候同时在user_info插入卡号
+	/**
+	 * 触发器insertBankCardNumber：插入银行卡的时候同时在user_info插入卡号
+	 * @param bankCard
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
 	public BasicObject insertBankCard(@ModelAttribute BankCard bankCard){
