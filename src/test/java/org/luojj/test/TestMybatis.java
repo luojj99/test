@@ -129,6 +129,7 @@ public class TestMybatis {
 //		bankCard.setPhoneNumber("13800138012");
 //		bankController.insertBankCard(bankCard, "132", "456");
 //		bankController.deleteBankCard(bankCard);
+		
 	}
 	
 	
