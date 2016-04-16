@@ -125,9 +125,10 @@ public class TestMybatis {
 	
 	@Test
 	public void test_deleteBankCard(){
-		BankCard bankCard = new BankCard();
-		bankCard.setPhoneNumber("13800138012");
-		bankController.deleteBankCard(bankCard);
+//		BankCard bankCard = new BankCard();
+//		bankCard.setPhoneNumber("13800138012");
+//		bankController.insertBankCard(bankCard, "132", "456");
+//		bankController.deleteBankCard(bankCard);
 	}
 	
 	
