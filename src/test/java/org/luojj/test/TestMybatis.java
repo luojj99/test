@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.luojj.controller.BankController;
 import org.luojj.controller.UserController;
-import org.luojj.dao.UserDao;
+import org.luojj.dao.UserMapper;
 import org.luojj.entity.BankCard;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
@@ -59,7 +59,7 @@ public class TestMybatis {
 	private MockHttpServletResponse response;
 
 	@Autowired
-	private UserDao userDao;
+	private UserMapper userDao;
 
 	@Autowired
 	private UserController userController;

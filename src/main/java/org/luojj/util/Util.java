@@ -1,7 +1,7 @@
 package org.luojj.util;
 
 import org.apache.log4j.Logger;
-import org.luojj.baseclass.BasicObject;
+import org.luojj.baseclass.BaseBean;
 
 import com.alibaba.fastjson.JSON;
 
@@ -13,7 +13,7 @@ private static Logger logger = Logger.getLogger(Util.class);
 		return "{\"message\":\""+content+"\"}";
 	}
 	
-	public static BasicObject SUCCESS(BasicObject basicObject){
+	public static BaseBean SUCCESS(BaseBean basicObject){
 		basicObject.setErrorCode(0);
 		basicObject.setMessage("SUCCESS");
 		logger.info(JSON.toJSONString(basicObject));
@@ -25,16 +25,16 @@ private static Logger logger = Logger.getLogger(Util.class);
 	 * @param message
 	 * @return
 	 */
-	public static BasicObject SUCCESS(String message){
-		BasicObject basicObject = new BasicObject();
+	public static BaseBean SUCCESS(String message){
+		BaseBean basicObject = new BaseBean();
 		basicObject.setErrorCode(0);
 		basicObject.setMessage(message);
 		logger.info(JSON.toJSONString(basicObject));
 		return basicObject;
 	}
 	
-	public static BasicObject SUCCESS(){
-		BasicObject basicObject = new BasicObject();
+	public static BaseBean SUCCESS(){
+		BaseBean basicObject = new BaseBean();
 		basicObject.setErrorCode(0);
 		basicObject.setMessage("SUCCESS");
 		logger.info(JSON.toJSONString(basicObject));
@@ -46,8 +46,8 @@ private static Logger logger = Logger.getLogger(Util.class);
 	 * @param message
 	 * @return
 	 */
-	public static BasicObject FAIL(String message){
-		BasicObject basicObject = new BasicObject();
+	public static BaseBean FAIL(String message){
+		BaseBean basicObject = new BaseBean();
 		basicObject.setErrorCode(1);
 		basicObject.setMessage(message);
 		logger.info(JSON.toJSONString(basicObject));

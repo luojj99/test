@@ -4,9 +4,10 @@ package org.luojj.controller;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
-import org.luojj.baseclass.BasicObject;
-import org.luojj.dao.BankCardDao;
-import org.luojj.dao.UserDao;
+import org.luojj.baseclass.BaseController;
+import org.luojj.baseclass.BaseBean;
+import org.luojj.dao.BankCardMapper;
+import org.luojj.dao.UserMapper;
 
 
 import org.luojj.entity.BankCard;
@@ -28,31 +29,32 @@ import com.alibaba.fastjson.JSONObject;
 
 @Controller
 @RequestMapping("/bankCard")
-public class BankController extends BasicController{
+public class BankController extends BaseController{
 	private static Logger logger = Logger.getLogger(BankController.class);  
 	@Autowired
-	private BankCardDao bankCardDao;
+	private BankCardMapper bankCardMapper;
 	@Autowired
-	private UserDao userDao;
+	private UserMapper userMapper;
 	
 	
 	/**
 	 * 触发器insertBankCardNumber：插入银行卡的时候同时在user_info插入卡号
+	 * 删除银行卡同时删除user_info卡号
 	 * @param bankCard
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value="/insert",method=RequestMethod.GET)
-	public BasicObject insertBankCard(@ModelAttribute BankCard bankCard,
+	public BaseBean insertBankCard(@ModelAttribute BankCard bankCard,
 			@RequestParam(value="tradingPassword") String tradingPassword,
 			@RequestParam(value="idCardNumber") String idCardNumber){
 		try {
-			int status=bankCardDao.insert(bankCard);
-			User user=userDao.selectByPrimaryKey(bankCard.getPhoneNumber());
+			int status=bankCardMapper.insert(bankCard);
+			User user=userMapper.selectByPrimaryKey(bankCard.getPhoneNumber());
 			user.setTradingPassword(tradingPassword);
 			user.setRealName(bankCard.getRealName());
 			user.setIdCardNumber(idCardNumber);
-			int status2=userDao.updateByPrimaryKey(user);
+			int status2=userMapper.updateByPrimaryKey(user);
 			if (status==1&&user!=null&&status2==1) {
 				
 				return SUCCESS("insert success");
@@ -69,9 +71,9 @@ public class BankController extends BasicController{
 	
 	@ResponseBody
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
-	public BasicObject deleteBankCard(@ModelAttribute BankCard bankCard){
+	public BaseBean deleteBankCard(@ModelAttribute BankCard bankCard){
 		try {
-			int status= bankCardDao.deleteByPrimaryKey(bankCard.getPhoneNumber());
+			int status= bankCardMapper.deleteByPrimaryKey(bankCard.getPhoneNumber());
 			
 			if (status==1) {
 				logger.info("delete success");
@@ -89,8 +91,8 @@ public class BankController extends BasicController{
 	
 	@ResponseBody
 	@RequestMapping(value="/select/{phoneNumber}",method=RequestMethod.GET)
-	public BasicObject selectByPhoneNumber(@PathVariable String phoneNumber){
-		BankCard bankCard = bankCardDao.selectByPrimaryKey(phoneNumber);
+	public BaseBean selectByPhoneNumber(@PathVariable String phoneNumber){
+		BankCard bankCard = bankCardMapper.selectByPrimaryKey(phoneNumber);
 		if (bankCard==null) {
 			return  FAIL("bankcard null");
 		}

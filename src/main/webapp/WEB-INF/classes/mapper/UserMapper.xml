@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.luojj.dao.UserDao">
+<mapper namespace="org.luojj.dao.UserMapper">
   <resultMap id="BaseResultMap" type="org.luojj.entity.User">
     <!--
       WARNING - @mbggenerated
@@ -18,7 +18,7 @@
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="marriage" jdbcType="VARCHAR" property="marriage" />
-    <result column="income_level" jdbcType="INTEGER" property="incomeLevel" />
+    <result column="income_level" jdbcType="VARCHAR" property="incomeLevel" />
     <result column="investment_style" jdbcType="VARCHAR" property="investmentStyle" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -62,7 +62,7 @@
       #{gender,jdbcType=VARCHAR}, #{idCardNumber,jdbcType=VARCHAR}, #{tradingPassword,jdbcType=VARCHAR}, 
       #{bankCardNumber,jdbcType=VARCHAR}, #{profilePhoto,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{realName,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{marriage,jdbcType=VARCHAR}, 
-      #{incomeLevel,jdbcType=INTEGER}, #{investmentStyle,jdbcType=VARCHAR})
+      #{incomeLevel,jdbcType=VARCHAR}, #{investmentStyle,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.luojj.entity.User">
     <!--
@@ -152,7 +152,7 @@
         #{marriage,jdbcType=VARCHAR},
       </if>
       <if test="incomeLevel != null">
-        #{incomeLevel,jdbcType=INTEGER},
+        #{incomeLevel,jdbcType=VARCHAR},
       </if>
       <if test="investmentStyle != null">
         #{investmentStyle,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
         marriage = #{marriage,jdbcType=VARCHAR},
       </if>
       <if test="incomeLevel != null">
-        income_level = #{incomeLevel,jdbcType=INTEGER},
+        income_level = #{incomeLevel,jdbcType=VARCHAR},
       </if>
       <if test="investmentStyle != null">
         investment_style = #{investmentStyle,jdbcType=VARCHAR},
@@ -225,7 +225,7 @@
       real_name = #{realName,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
       marriage = #{marriage,jdbcType=VARCHAR},
-      income_level = #{incomeLevel,jdbcType=INTEGER},
+      income_level = #{incomeLevel,jdbcType=VARCHAR},
       investment_style = #{investmentStyle,jdbcType=VARCHAR}
     where phone_number = #{phoneNumber,jdbcType=VARCHAR}
   </update>

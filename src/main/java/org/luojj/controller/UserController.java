@@ -8,7 +8,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Options;
 import org.apache.log4j.Logger;
-import org.luojj.baseclass.BasicObject;
+import org.luojj.baseclass.BaseController;
+import org.luojj.baseclass.BaseBean;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ import com.alibaba.fastjson.JSON;
 
 
 @Controller
-public class UserController extends BasicController{
+public class UserController extends BaseController{
 	 private static Logger logger = Logger.getLogger(UserController.class);  
 	
 //	 static Message message=new Message();
@@ -52,7 +53,7 @@ public class UserController extends BasicController{
 	
 	@ResponseBody
 	@RequestMapping(value="isRegistered/{phoneNumber}",method=RequestMethod.GET)
-	public BasicObject isRegistered(@PathVariable String phoneNumber){
+	public BaseBean isRegistered(@PathVariable String phoneNumber){
 		 boolean isRegistered=userService.isRegistered(phoneNumber);
 		 logger.info(isRegistered);
 		if (isRegistered) {
@@ -65,7 +66,7 @@ public class UserController extends BasicController{
 	@Options(flushCache=true)
 	@ResponseBody
 	@RequestMapping(value="choose/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
-	public BasicObject choose(@PathVariable String phoneNumber,
+	public BaseBean choose(@PathVariable String phoneNumber,
     		@PathVariable String loginPassword){
 		boolean isRegistered = userService.isRegistered(phoneNumber);
 		if (isRegistered) {
@@ -76,7 +77,7 @@ public class UserController extends BasicController{
 	}
 	
 	
-    public  BasicObject login( String phoneNumber, String loginPassword)  {
+    public  BaseBean login( String phoneNumber, String loginPassword)  {
 			
 			 User user=userService.checkLogin(phoneNumber,loginPassword);
 		        if(user==null){
@@ -88,7 +89,7 @@ public class UserController extends BasicController{
        
     }
     
-    public  BasicObject register(String phoneNumber, String loginPassword)  {
+    public  BaseBean register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
     	
     	if (user==null) {
@@ -103,7 +104,7 @@ public class UserController extends BasicController{
     
     @ResponseBody
     @RequestMapping(value="/user/update",method=RequestMethod.GET)
-    public BasicObject updateUser(@ModelAttribute User user){
+    public BaseBean updateUser(@ModelAttribute User user){
     	try {
     		int status=userService.updateUser(user);
     		User user3=userService.getUser(user.getPhoneNumber());
@@ -121,7 +122,7 @@ public class UserController extends BasicController{
     
     @ResponseBody
     @RequestMapping(value="/user/select/{phoneNumber}",method=RequestMethod.GET)
-    public BasicObject getUser(@PathVariable String phoneNumber){
+    public BaseBean getUser(@PathVariable String phoneNumber){
     	User user =  userService.getUser(phoneNumber);
     	if (user==null) {
 			return FAIL("user null");

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
-import org.luojj.dao.UserDao;
+import org.luojj.dao.UserMapper;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserServiceImpl implements IUserService {
 	@Autowired
-	private UserDao userDao;
+	private UserMapper userMapper;
 
 	public boolean isRegistered(String phoneNumber) {
 		// TODO Auto-generated method stub
-		User user = userDao.selectByPrimaryKey(phoneNumber);
+		User user = userMapper.selectByPrimaryKey(phoneNumber);
 
 		if (user == null) {
 			return false;
@@ -30,7 +30,7 @@ public class UserServiceImpl implements IUserService {
 
 	public User checkLogin(String phoneNumber, String loginPassword) {
 		// TODO Auto-generated method stub
-		User user = userDao.selectByPrimaryKey(phoneNumber);
+		User user = userMapper.selectByPrimaryKey(phoneNumber);
 
 		if (user != null && user.getLoginPassword().equals(loginPassword)) {
 			return user;
@@ -47,9 +47,9 @@ public class UserServiceImpl implements IUserService {
 		user.setPhoneNumber(phoneNumber);
 		user.setLoginPassword(loginPassword);
 		try {
-			i = userDao.insert(user);
+			i = userMapper.insert(user);
 			if (i == 1) {
-				user = userDao.selectByPrimaryKey(phoneNumber);
+				user = userMapper.selectByPrimaryKey(phoneNumber);
 				return user;
 			}
 		} catch (Exception e) {
@@ -63,12 +63,12 @@ public class UserServiceImpl implements IUserService {
 
 	public int updateUser(User user) {
 		// TODO Auto-generated method stub
-		return userDao.updateByPrimaryKey(user);
+		return userMapper.updateByPrimaryKey(user);
 	}
 
 	public User getUser(String phoneNumber) {
 		// TODO Auto-generated method stub
-		return userDao.selectByPrimaryKey(phoneNumber);
+		return userMapper.selectByPrimaryKey(phoneNumber);
 	}
 
 }
