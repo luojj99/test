@@ -46,7 +46,7 @@ public class AssetController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value="/insert",method=RequestMethod.GET)
+	@RequestMapping(value="asset/insert",method=RequestMethod.POST)
 	public BaseBean insertAsset(@ModelAttribute Asset asset){
 		try {
 			int status=assetMapper.insert(asset);
