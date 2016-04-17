@@ -44,7 +44,7 @@ public class BankController extends BaseController{
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/insert",method=RequestMethod.GET)
+	@RequestMapping(value="/insert",method=RequestMethod.POST)
 	public BaseBean insertBankCard(@ModelAttribute BankCard bankCard,
 			@RequestParam(value="tradingPassword") String tradingPassword,
 			@RequestParam(value="idCardNumber") String idCardNumber){
