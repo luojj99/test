@@ -11,17 +11,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import javax.json.Json;
+
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.luojj.controller.AssetController;
 import org.luojj.controller.BankController;
 import org.luojj.controller.UserController;
 import org.luojj.dao.UserMapper;
+import org.luojj.entity.Asset;
 import org.luojj.entity.BankCard;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
@@ -69,6 +75,9 @@ public class TestMybatis {
 
 	@Autowired
 	private IUserService userService;
+	
+	@Autowired
+	private AssetController assetController;
 
 	// @Test
 	// public void test2() {
@@ -129,6 +138,35 @@ public class TestMybatis {
 //		bankCard.setPhoneNumber("13800138012");
 //		bankController.insertBankCard(bankCard, "132", "456");
 //		bankController.deleteBankCard(bankCard);
+		
+	}
+	
+	@Test
+	public void test_insertAsset(){
+//		Asset asset = new  Asset(); 
+//		asset.setPhoneNumber("13800138000");
+//		
+//		assetController.insertAsset(asset);
+	}
+	
+	
+	
+	@Test
+	public void test_updateAsset(){
+		Asset asset = new  Asset(); 
+		asset.setPhoneNumber("13800138000");
+		BigDecimal balanceBigDecimal = new BigDecimal("30000");
+		asset.setBalance(balanceBigDecimal);
+		assetController.updateAsset(asset);
+	}
+	
+	
+	@Test
+	public void test_selectAsset(){
+		Asset asset = new  Asset(); 
+		
+		asset=(Asset) assetController.getAsset("13800138000");
+		logger.info(JSON.toJSONString(asset));
 		
 	}
 	

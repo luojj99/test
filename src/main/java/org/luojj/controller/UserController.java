@@ -44,7 +44,7 @@ public class UserController extends BaseController{
 	 *  把从参数获取得到的bean的空字段和拉取的bean合并
 	 */  
 	@ModelAttribute  
-	public void getUser(@RequestParam(value="phoneNumber",required=false) String phoneNumber,   
+	public void fixUpdateMethod(@RequestParam(value="phoneNumber",required=false) String phoneNumber,   
 	        Map<String, Object> map){  
 	    logger.info("modelAttribute method");  
 	    if(phoneNumber != null){  

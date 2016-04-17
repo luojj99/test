@@ -20,7 +20,7 @@ public class BaseController {
 	}
 	
 	/**
-	 * 正确信息处理（不包括用户信息）message被暂时注销
+	 * 正确信息处理（不包括用户信息）
 	 * 
 	 * @param message
 	 * @return
