@@ -4,6 +4,7 @@ package org.luojj.controller;
 
 
 
+import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Options;
@@ -12,6 +13,7 @@ import org.luojj.baseclass.BaseController;
 import org.luojj.baseclass.BaseBean;
 import org.luojj.entity.User;
 import org.luojj.service.IUserService;
+import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -103,12 +105,14 @@ public class UserController extends BaseController{
     
     
     @ResponseBody
-    @RequestMapping(value="/user/update",method=RequestMethod.GET)
+    @RequestMapping(value="/user/update",method=RequestMethod.POST)
     public BaseBean updateUser(@ModelAttribute User user){
     	try {
+    		logger.info("插入前："+JSON.toJSONString(user));
     		int status=userService.updateUser(user);
-    		User user3=userService.getUser(user.getPhoneNumber());
-    		logger.info(JSON.toJSONString(user3));
+    		User user2 = userService.getUser(user.getPhoneNumber());
+    		logger.info("插入后："+JSON.toJSONString(user2));
+    		
         	if (status==1) {
     			return SUCCESS("update success");
     		}
