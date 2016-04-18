@@ -12,11 +12,11 @@ public class BaseController {
 	/**
 	 * 正确信息处理（包括用户信息）
 	 * message 可以为null
-	 * @param basicObject
 	 * @param message TODO
+	 * @param basicObject
 	 * @return
 	 */
-	public static BaseBean SUCCESS(BaseBean basicObject, String message){
+	public static BaseBean SUCCESS(String message, BaseBean basicObject){
 //		return Util.SUCCESS(basicObject,String message);
 		return Util.SUCCESS(basicObject, message);
 	}

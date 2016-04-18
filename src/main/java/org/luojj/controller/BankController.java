@@ -96,7 +96,7 @@ public class BankController extends BaseController{
 		if (bankCard==null) {
 			return  FAIL("bankcard null");
 		}
-		SUCCESS(bankCard, null);
+		SUCCESS(null, bankCard);
 		logger.info(JSON.toJSONString(bankCard));
 		return bankCard;
 	}

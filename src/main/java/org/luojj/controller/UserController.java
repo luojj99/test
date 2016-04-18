@@ -5,6 +5,7 @@ package org.luojj.controller;
 
 
 import java.lang.reflect.Method;
+
 import java.util.Map;
 
 import javax.json.JsonObject;
@@ -89,7 +90,7 @@ public class UserController extends BaseController{
 		        if(user==null){
 		        	return  FAIL("password error");
 		        }
-		        SUCCESS(user, null);
+		        SUCCESS(null, user);
 		        logger.info(JSON.toJSONString(user));
 		        return user;
        
@@ -101,7 +102,7 @@ public class UserController extends BaseController{
     	if (user==null) {
     		return FAIL("register fail");
 		}
-		SUCCESS(user, null);
+		SUCCESS( null,user);
     	logger.info(JSON.toJSONString(user));
     	return user;
     	
@@ -115,10 +116,10 @@ public class UserController extends BaseController{
     		
     		logger.info("客户端传来的数据："+JSON.toJSONString(user));
     		int status=userService.updateUser(user);
-    		User user2 = userService.getUser(user.getPhoneNumber());
+    		User afterUpdateUser = userService.getUser(user.getPhoneNumber());
         	if (status==1) {
-        		logger.info("更新后数据库数据："+JSON.toJSONString(user2));
-    			return SUCCESS("update success");
+        		logger.info("更新后数据库数据："+JSON.toJSONString(afterUpdateUser));
+    			return SUCCESS("update success:"+afterUpdateUser);
     		}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -135,7 +136,7 @@ public class UserController extends BaseController{
     	if (user==null) {
 			return FAIL("user null");
 		}else{
-			return SUCCESS(user, null);
+			return SUCCESS(null, user);
 		}
     }
 

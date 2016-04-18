@@ -57,7 +57,8 @@ public class AssetController extends BaseController{
 			User user = userMapper.selectByPrimaryKey(asset.getPhoneNumber());
 			int status=assetMapper.insert(asset);
 			if (status==1&&user!=null) {
-				return SUCCESS("insert success");
+				
+				return SUCCESS("insert success:"+assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -75,7 +76,7 @@ public class AssetController extends BaseController{
 		try {
     		int status=assetMapper.updateByPrimaryKey(asset);
         	if (status==1) {
-    			return SUCCESS("update success");
+    			return SUCCESS("update success:"+assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
     		}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -90,7 +91,7 @@ public class AssetController extends BaseController{
     public BaseBean getAsset(@PathVariable String phoneNumber){
 		try {
 			Asset asset =  assetMapper.selectByPrimaryKey(phoneNumber);
-			return SUCCESS(asset, null);
+			return SUCCESS(null, asset);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
