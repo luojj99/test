@@ -90,10 +90,9 @@ public class UserController extends BaseController{
 		        if(user==null){
 		        	return  FAIL("password error");
 		        }
-		        SUCCESS(null, user);
 		        logger.info(JSON.toJSONString(user));
-		        return user;
-       
+		        return SUCCESS(null, user);
+		        
     }
     
     public  BaseBean register(String phoneNumber, String loginPassword)  {
@@ -102,24 +101,22 @@ public class UserController extends BaseController{
     	if (user==null) {
     		return FAIL("register fail");
 		}
-		SUCCESS( null,user);
     	logger.info(JSON.toJSONString(user));
-    	return user;
+    	return SUCCESS( null,user);
     	
     }
     
     
     @ResponseBody
-    @RequestMapping(value="/user/update",method=RequestMethod.POST,headers={"content-type=application/json","content-type=application/xml"})
-    public BaseBean updateUser(@RequestBody User user){
+    @RequestMapping(value="/user/update",method=RequestMethod.POST)
+    public BaseBean updateUser(@ModelAttribute User user){
     	try {
-    		
     		logger.info("客户端传来的数据："+JSON.toJSONString(user));
     		int status=userService.updateUser(user);
     		User afterUpdateUser = userService.getUser(user.getPhoneNumber());
         	if (status==1) {
         		logger.info("更新后数据库数据："+JSON.toJSONString(afterUpdateUser));
-    			return SUCCESS("update success:"+afterUpdateUser);
+    			return SUCCESS("update success:",afterUpdateUser);
     		}
 		} catch (Exception e) {
 			// TODO: handle exception

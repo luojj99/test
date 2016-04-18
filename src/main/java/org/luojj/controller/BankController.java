@@ -94,8 +94,6 @@ public class BankController extends BaseController{
 				logger.info("delete success");
 				return SUCCESS("delete success");
 			}
-				
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

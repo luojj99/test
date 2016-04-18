@@ -22,7 +22,7 @@ private static Logger logger = Logger.getLogger(Util.class);
 		}else{
 			basicObject.setMessage(message);
 		}
-		logger.info(JSON.toJSONString(basicObject));
+		logger.error(JSON.toJSONString(basicObject));
 		return basicObject;
 	}
 	
@@ -43,7 +43,7 @@ private static Logger logger = Logger.getLogger(Util.class);
 		BaseBean basicObject = new BaseBean();
 		basicObject.setErrorCode(0);
 		basicObject.setMessage("SUCCESS");
-		logger.info(JSON.toJSONString(basicObject));
+		logger.error(JSON.toJSONString(basicObject));
 		return basicObject;
 	}
 	

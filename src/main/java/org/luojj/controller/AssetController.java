@@ -76,7 +76,7 @@ public class AssetController extends BaseController{
 		try {
     		int status=assetMapper.updateByPrimaryKey(asset);
         	if (status==1) {
-    			return SUCCESS("update success:"+assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
+    			return SUCCESS("update success:",assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
     		}
 		} catch (Exception e) {
 			// TODO: handle exception
