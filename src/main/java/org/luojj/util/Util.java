@@ -2,6 +2,8 @@ package org.luojj.util;
 
 
 
+import java.awt.List;
+
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseBean;
 
@@ -25,6 +27,9 @@ private static Logger logger = Logger.getLogger(Util.class);
 		logger.error(JSON.toJSONString(basicObject));
 		return basicObject;
 	}
+	
+	
+	
 	
 	/**
 	 * 

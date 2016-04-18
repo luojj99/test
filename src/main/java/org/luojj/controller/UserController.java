@@ -97,7 +97,6 @@ public class UserController extends BaseController{
     
     public  BaseBean register(String phoneNumber, String loginPassword)  {
     	User user=userService.register(phoneNumber, loginPassword);
-    	
     	if (user==null) {
     		return FAIL("register fail");
 		}
@@ -122,6 +121,7 @@ public class UserController extends BaseController{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		logger.info("更新失败");
 		return FAIL("update fail");
     }
     

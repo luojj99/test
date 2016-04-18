@@ -3,6 +3,8 @@ package org.luojj.baseclass;
 //工具类静态导入
 import static org.luojj.util.Util.Str2Json;
 
+import java.awt.List;
+
 import org.luojj.util.Util;
 
 import static org.luojj.util.Util.SUCCESS;
@@ -34,6 +36,8 @@ public class BaseController {
 	public static BaseBean SUCCESS(){
 		return Util.SUCCESS();
 	}
+	
+
 	
 	
 	
