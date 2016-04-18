@@ -2,24 +2,11 @@ package org.luojj.test;
 
 
 //注意：import static 的spring类  post  get  
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
 import java.math.BigDecimal;
-import java.sql.SQLException;
-
-import javax.json.Json;
+import java.util.Calendar;
 
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,11 +15,8 @@ import org.luojj.controller.BankController;
 import org.luojj.controller.UserController;
 import org.luojj.dao.UserMapper;
 import org.luojj.entity.Asset;
-import org.luojj.entity.BankCard;
-import org.luojj.entity.User;
 import org.luojj.service.IUserService;
-import org.luojj.service.impl.UserServiceImpl;
-import org.luojj.util.Util;
+import org.luojj.util.IdcardInfoExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -43,7 +27,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 // 表示继承了SpringJUnit4ClassRunner类 ,用于配置spring中测试的环境
@@ -168,6 +151,16 @@ public class TestMybatis {
 		asset=(Asset) assetController.getAsset("13800138000");
 		logger.info(JSON.toJSONString(asset));
 		
+	}
+	
+	
+	@Test
+	public void testIdUtil(){
+		Calendar a=Calendar.getInstance();
+		System.out.println();//得到年
+		IdcardInfoExtractor extractor = new IdcardInfoExtractor("441423199203242713");
+		logger.info("年龄："+(a.get(Calendar.YEAR)-extractor.getYear()));
+		logger.info("性别："+extractor.getGender());
 	}
 	
 	

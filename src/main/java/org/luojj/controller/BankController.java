@@ -2,6 +2,8 @@ package org.luojj.controller;
 
 
 
+import java.util.Calendar;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseController;
@@ -13,6 +15,8 @@ import org.luojj.dao.UserMapper;
 import org.luojj.entity.BankCard;
 import org.luojj.entity.User;
 
+import org.luojj.util.IdcardInfoExtractor;
+import org.luojj.util.IdcardValidator;
 import org.luojj.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,8 +53,17 @@ public class BankController extends BaseController{
 			@RequestParam(value="tradingPassword") String tradingPassword,
 			@RequestParam(value="idCardNumber") String idCardNumber){
 		try {
-			int status=bankCardMapper.insert(bankCard);
 			User user=userMapper.selectByPrimaryKey(bankCard.getPhoneNumber());
+			IdcardValidator validator = new IdcardValidator();
+			boolean isIdcardValid = validator.isValidatedAllIdcard(idCardNumber);
+			if (isIdcardValid) {
+				Calendar a=Calendar.getInstance();
+				IdcardInfoExtractor extractor = new IdcardInfoExtractor(idCardNumber);
+				user.setAge(a.get(Calendar.YEAR)-extractor.getYear());
+				user.setGender(extractor.getGender());
+				logger.info("年龄："+(a.get(Calendar.YEAR)-extractor.getYear()));
+			}
+			int status=bankCardMapper.insert(bankCard);
 			user.setTradingPassword(tradingPassword);
 			user.setRealName(bankCard.getRealName());
 			user.setIdCardNumber(idCardNumber);
