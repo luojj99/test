@@ -1,6 +1,6 @@
 package org.luojj.util;
 
-import java.io.UnsupportedEncodingException;
+
 
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseBean;
@@ -15,9 +15,13 @@ private static Logger logger = Logger.getLogger(Util.class);
 		return "{\"message\":\""+content+"\"}";
 	}
 	
-	public static BaseBean SUCCESS(BaseBean basicObject){
+	public static BaseBean SUCCESS(BaseBean basicObject, String message){
 		basicObject.setErrorCode(0);
-		basicObject.setMessage("SUCCESS");
+		if (message==null) {
+			basicObject.setMessage("SUCCESS");
+		}else{
+			basicObject.setMessage(message);
+		}
 		logger.info(JSON.toJSONString(basicObject));
 		return basicObject;
 	}
@@ -57,14 +61,7 @@ private static Logger logger = Logger.getLogger(Util.class);
 	}
 	
 	
-	public static String encodeStr(String str) {  
-        try {  
-            return new String(str.getBytes("ISO-8859-1"), "UTF-8");  
-        } catch (UnsupportedEncodingException e) {  
-            e.printStackTrace();  
-            return null;  
-        }  
-    }  
+	
 	
 	
 }

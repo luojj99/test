@@ -11,12 +11,14 @@ import static org.luojj.util.Util.FAIL;
 public class BaseController {
 	/**
 	 * 正确信息处理（包括用户信息）
-	 * 
+	 * message 可以为null
 	 * @param basicObject
+	 * @param message TODO
 	 * @return
 	 */
-	public static BaseBean SUCCESS(BaseBean basicObject){
-		return Util.SUCCESS(basicObject);
+	public static BaseBean SUCCESS(BaseBean basicObject, String message){
+//		return Util.SUCCESS(basicObject,String message);
+		return Util.SUCCESS(basicObject, message);
 	}
 	
 	/**

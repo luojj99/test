@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseBean;
 import org.luojj.baseclass.BaseController;
 import org.luojj.dao.AssetMapper;
+import org.luojj.dao.UserMapper;
 import org.luojj.entity.Asset;
 import org.luojj.entity.BankCard;
 import org.luojj.entity.User;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +29,9 @@ public class AssetController extends BaseController{
 	 
 	 @Autowired
 	 private AssetMapper assetMapper;
+	 
+	 @Autowired
+	 private UserMapper userMapper;
 	
 	/** 
 	 *  解决部分更新问题
@@ -47,10 +52,11 @@ public class AssetController extends BaseController{
 	
 	@ResponseBody
 	@RequestMapping(value="asset/insert",method=RequestMethod.POST)
-	public BaseBean insertAsset(@ModelAttribute Asset asset){
+	public BaseBean insertAsset(@RequestBody Asset asset){
 		try {
+			User user = userMapper.selectByPrimaryKey(asset.getPhoneNumber());
 			int status=assetMapper.insert(asset);
-			if (status==1) {
+			if (status==1&&user!=null) {
 				return SUCCESS("insert success");
 			}
 		} catch (Exception e) {
@@ -64,8 +70,8 @@ public class AssetController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value="asset/update",method=RequestMethod.POST)
-	public BaseBean updateAsset(@ModelAttribute Asset asset){
+	@RequestMapping(value="asset/update",method=RequestMethod.POST,headers={"content-type=application/json","content-type=application/xml"})
+	public BaseBean updateAsset(@RequestBody Asset asset){
 		try {
     		int status=assetMapper.updateByPrimaryKey(asset);
         	if (status==1) {
@@ -84,7 +90,7 @@ public class AssetController extends BaseController{
     public BaseBean getAsset(@PathVariable String phoneNumber){
 		try {
 			Asset asset =  assetMapper.selectByPrimaryKey(phoneNumber);
-			return SUCCESS(asset);
+			return SUCCESS(asset, null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

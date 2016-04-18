@@ -7,6 +7,8 @@ package org.luojj.controller;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import javax.json.JsonObject;
+
 import org.apache.ibatis.annotations.Options;
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseController;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +52,7 @@ public class UserController extends BaseController{
 	    logger.info("modelAttribute method");  
 	    if(phoneNumber != null){  
 	        User user=userService.getUser(phoneNumber);  
+	        logger.info("数据库原数据："+JSON.toJSONString(user));
 	        map.put("user", user);  
 	    }  
 	}  
@@ -65,7 +69,7 @@ public class UserController extends BaseController{
 		return FAIL("unregistered");
 	}
 	
-	@Options(flushCache=true)
+	
 	@ResponseBody
 	@RequestMapping(value="choose/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
 	public BaseBean choose(@PathVariable String phoneNumber,
@@ -85,7 +89,7 @@ public class UserController extends BaseController{
 		        if(user==null){
 		        	return  FAIL("password error");
 		        }
-		        SUCCESS(user);
+		        SUCCESS(user, null);
 		        logger.info(JSON.toJSONString(user));
 		        return user;
        
@@ -97,7 +101,7 @@ public class UserController extends BaseController{
     	if (user==null) {
     		return FAIL("register fail");
 		}
-		SUCCESS(user);
+		SUCCESS(user, null);
     	logger.info(JSON.toJSONString(user));
     	return user;
     	
@@ -105,15 +109,15 @@ public class UserController extends BaseController{
     
     
     @ResponseBody
-    @RequestMapping(value="/user/update",method=RequestMethod.POST)
-    public BaseBean updateUser(@ModelAttribute User user){
+    @RequestMapping(value="/user/update",method=RequestMethod.POST,headers={"content-type=application/json","content-type=application/xml"})
+    public BaseBean updateUser(@RequestBody User user){
     	try {
-    		logger.info("插入前："+JSON.toJSONString(user));
+    		
+    		logger.info("客户端传来的数据："+JSON.toJSONString(user));
     		int status=userService.updateUser(user);
     		User user2 = userService.getUser(user.getPhoneNumber());
-    		logger.info("插入后："+JSON.toJSONString(user2));
-    		
         	if (status==1) {
+        		logger.info("更新后数据库数据："+JSON.toJSONString(user2));
     			return SUCCESS("update success");
     		}
 		} catch (Exception e) {
@@ -131,7 +135,7 @@ public class UserController extends BaseController{
     	if (user==null) {
 			return FAIL("user null");
 		}else{
-			return SUCCESS(user);
+			return SUCCESS(user, null);
 		}
     }
 
