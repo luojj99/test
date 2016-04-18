@@ -51,7 +51,7 @@ public class AssetController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value="asset/insert",method=RequestMethod.POST)
+	@RequestMapping(value="asset/insert",method=RequestMethod.POST,headers={"content-type=application/json","content-type=application/xml"})
 	public BaseBean insertAsset(@RequestBody Asset asset){
 		try {
 			User user = userMapper.selectByPrimaryKey(asset.getPhoneNumber());
