@@ -47,14 +47,14 @@ public class UserControllerTest extends BaseTest {
 		assertEquals(userMapper.selectByPrimaryKey("13800138888").getPhoneNumber(), assetMapper.selectByPrimaryKey("13800138888").getPhoneNumber());
 	}
 
-	@Test
-	public void testUpdateUser() {
-		User user = new User();
-		user.setPhoneNumber("13800138000");
-		user.setGender("男");
-		userController.updateUser(user);
-		assertEquals("男", userMapper.selectByPrimaryKey("13800138000").getGender());
-	}
+//	@Test
+//	public void testUpdateUser() {
+//		User user = new User();
+//		user.setPhoneNumber("13800138000");
+//		user.setGender("男");
+//		userController.updateUser(user);
+//		assertEquals("男", userMapper.selectByPrimaryKey("13800138000").getGender());
+//	}
 
 //	@Test
 //	public void testGetUser() {
