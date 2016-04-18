@@ -54,23 +54,25 @@ public class BankController extends BaseController{
 			@RequestParam(value="idCardNumber") String idCardNumber){
 		try {
 			User user=userMapper.selectByPrimaryKey(bankCard.getPhoneNumber());
-			IdcardValidator validator = new IdcardValidator();
-			boolean isIdcardValid = validator.isValidatedAllIdcard(idCardNumber);
-			if (isIdcardValid) {
-				Calendar a=Calendar.getInstance();
-				IdcardInfoExtractor extractor = new IdcardInfoExtractor(idCardNumber);
-				user.setAge(a.get(Calendar.YEAR)-extractor.getYear());
-				user.setGender(extractor.getGender());
-				logger.info("年龄："+(a.get(Calendar.YEAR)-extractor.getYear()));
-			}
-			int status=bankCardMapper.insert(bankCard);
-			user.setTradingPassword(tradingPassword);
-			user.setRealName(bankCard.getRealName());
-			user.setIdCardNumber(idCardNumber);
-			int status2=userMapper.updateByPrimaryKey(user);
-			if (status==1&&user!=null&&status2==1) {
+			if (user!=null) {
+				user.setTradingPassword(tradingPassword);
+				user.setRealName(bankCard.getRealName());
+				user.setIdCardNumber(idCardNumber);
+				IdcardValidator validator = new IdcardValidator();
+				boolean isIdcardValid = validator.isValidatedAllIdcard(idCardNumber);
+				if (isIdcardValid) {
+					Calendar a=Calendar.getInstance();
+					IdcardInfoExtractor extractor = new IdcardInfoExtractor(idCardNumber);
+					user.setAge(a.get(Calendar.YEAR)-extractor.getYear());
+					user.setGender(extractor.getGender());
+					logger.info("年龄："+(a.get(Calendar.YEAR)-extractor.getYear()));
+				}
+				int status=bankCardMapper.insert(bankCard);
+				int status2=userMapper.updateByPrimaryKey(user);
 				
-				return SUCCESS("insert success");
+				if (status==1&&user!=null&&status2==1) {
+					return SUCCESS("insert success:",user);
+				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
