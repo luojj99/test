@@ -43,7 +43,7 @@ public class UserControllerTest extends BaseTest {
 
 	@Test
 	public void testRegister() {
-		userController.register("13800138888", "8888888888");
+		userController.register("13800188888", "8888888888");
 		assertEquals(userMapper.selectByPrimaryKey("13800138888").getPhoneNumber(), assetMapper.selectByPrimaryKey("13800138888").getPhoneNumber());
 	}
 

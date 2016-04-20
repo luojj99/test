@@ -34,7 +34,7 @@ public class AssetControllerTest extends BaseTest{
 //	}
 
 	@Test
-	@Rollback(false)
+	
 	public void testUpdateAsset () throws Exception {
 		String phonNumber ="13800138000";
 		Asset asset = new Asset();
