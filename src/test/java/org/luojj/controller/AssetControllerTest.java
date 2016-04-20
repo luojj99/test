@@ -54,7 +54,7 @@ public class AssetControllerTest extends BaseTest{
 		  		 .isOk())
 			     .andDo(print());  
 	}
-
+//fsdfs
 //	@Test
 //	public void testGetAsset() {
 //		fail("Not yet implemented");
