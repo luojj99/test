@@ -8,7 +8,6 @@ import org.luojj.baseclass.BaseController;
 import org.luojj.dao.AssetMapper;
 import org.luojj.dao.UserMapper;
 import org.luojj.entity.Asset;
-import org.luojj.entity.BankCard;
 import org.luojj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +57,7 @@ public class AssetController extends BaseController{
 			int status=assetMapper.insert(asset);
 			if (status==1&&user!=null) {
 				
-				return SUCCESS("insert success:"+assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
+				return SUCCESS("insert success:",assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -75,7 +74,10 @@ public class AssetController extends BaseController{
 	public BaseBean updateAsset(@RequestBody Asset asset){
 		try {
     		int status=assetMapper.updateByPrimaryKey(asset);
+    		
         	if (status==1) {
+        		
+        		logger.info("更新资产："+JSON.toJSONString(asset));
     			return SUCCESS("update success:",assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
     		}
 		} catch (Exception e) {

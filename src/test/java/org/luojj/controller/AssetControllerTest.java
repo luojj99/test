@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.luojj.entity.Asset;
 import org.luojj.test.BaseTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.Rollback;
 
 import com.alibaba.fastjson.JSON;
 
@@ -33,6 +34,7 @@ public class AssetControllerTest extends BaseTest{
 //	}
 
 	@Test
+	@Rollback(false)
 	public void testUpdateAsset () throws Exception {
 		String phonNumber ="13800138000";
 		Asset asset = new Asset();
