@@ -85,13 +85,18 @@ public class UserController extends BaseController{
 	
 	
     public  BaseBean login( String phoneNumber, String loginPassword)  {
-			
-			 User user=userService.checkLogin(phoneNumber,loginPassword);
+			try {
+				User user=userService.checkLogin(phoneNumber,loginPassword);
 		        if(user==null){
 		        	return  FAIL("password error");
 		        }
 		        logger.info(JSON.toJSONString(user));
 		        return SUCCESS(null, user);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return  FAIL("password null");
 		        
     }
     

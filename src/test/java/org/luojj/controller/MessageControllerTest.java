@@ -38,8 +38,8 @@ public class MessageControllerTest extends BaseTest{
 
 	@Test
 	public void testGetMessageList() {
-		String josnList=messageController.getMsgList();
-		logger.info("messge列表："+josnList);
+		List<MessageCenter>list=messageController.getMsgList();
+		logger.info("messge列表："+list);
 	}
 
 }

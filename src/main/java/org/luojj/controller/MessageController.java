@@ -101,16 +101,16 @@ public class MessageController  extends BaseController{
 	
 	@ResponseBody
     @RequestMapping(value="/msgCenter/getMsgList",method=RequestMethod.GET)
-    public String getMsgList(){
+    public List<MessageCenter> getMsgList(){
 		List<MessageCenter> msgList =  new ArrayList<MessageCenter>();
 		try {
 			msgList = messageCenterMapper.getMsgList();
-			return JSON.toJSONString(msgList);
+			return msgList;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return JSON.toJSONString(FAIL("select fail"));
+		return null;
     }
 
 }
