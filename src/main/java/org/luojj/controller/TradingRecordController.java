@@ -2,7 +2,9 @@ package org.luojj.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseBean;
@@ -71,16 +73,20 @@ public class TradingRecordController extends BaseController{
 	
 	@ResponseBody
 	@RequestMapping(value="/getRecordList/{phoneNumber}",method=RequestMethod.GET)
-	public List<TradingRecord> getRecordList(@PathVariable String phoneNumber){
-		List<TradingRecord> cardList =  new ArrayList<TradingRecord>();
+	public Map<String, Object> getRecordList(@PathVariable String phoneNumber){
+		Map<String, Object>map= new HashMap<String, Object>();
+		List<TradingRecord> recordList =  new ArrayList<TradingRecord>();
 		try {
-			cardList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
-			return cardList;
+			recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
+			map.put("recordList", recordList);
+			map.put("errorCode", 0);
+			return map;
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return null;
+		map.put("errorCode", 1);
+		return map;
 	}
 
 }
