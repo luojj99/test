@@ -32,7 +32,6 @@ public class TradingRecordControllerTest extends BaseTest{
 		tradingRecord.setPhoneNumber(phoneNumber);
 		tradingRecord.setTradingType("CZ");
 		tradingRecord.setTradingAmount(addaount);
-		logger.info("："+JSON.toJSONString(tradingRecord));
 		tradingRecordController.insertRecord(tradingRecord);
 		
 		assertEquals(balanceBefore.add(addaount), assetMapper.selectByPrimaryKey(phoneNumber).getBalance());
