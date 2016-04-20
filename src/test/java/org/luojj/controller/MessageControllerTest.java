@@ -36,10 +36,10 @@ public class MessageControllerTest extends BaseTest{
 //		fail("Not yet implemented");
 //	}
 
-	@Test
-	public void testGetMessageList() {
-		List<MessageCenter>list=messageController.getMsgList();
-		logger.info("messge列表："+list);
-	}
+//	@Test
+//	public void testGetMessageList() {
+//		List<MessageCenter>list=messageController.getMsgList();
+//		logger.info("messge列表："+list);
+//	}
 
 }

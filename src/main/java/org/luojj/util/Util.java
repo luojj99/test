@@ -2,7 +2,9 @@ package org.luojj.util;
 
 
 
-import java.awt.List;
+
+
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.luojj.baseclass.BaseBean;

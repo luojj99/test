@@ -37,11 +37,11 @@ public class TradingRecordController extends BaseController{
 	public BaseBean insertRecord(@RequestBody TradingRecord tradingRecord
 			){
 		try {
-			logger.info("交易记录提交："+JSON.toJSONString(tradingRecord));
+			logger.info("tradingRecord："+JSON.toJSONString(tradingRecord));
 			Asset asset= assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber());
-			logger.info("提交前余额："+JSON.toJSONString(asset));
+			logger.info("asset update before："+JSON.toJSONString(asset));
 			String type=tradingRecord.getTradingType();
-			//充值、提现、理财到期转出
+			//类型：充值、提现、理财购买、理财变现、理财到期转出
 			if (asset!=null) {
 				
 				BigDecimal tradingAmount=tradingRecord.getTradingAmount();
@@ -51,18 +51,20 @@ public class TradingRecordController extends BaseController{
 				}else if (type.equals("提现")) {
 					balance=balance.subtract(tradingAmount);
 				}
-				asset.setBalance(balance);
-				assetMapper.updateByPrimaryKey(asset);
-				tradingRecord.setTradingRecordId(Long.parseLong(System.currentTimeMillis()+tradingRecord.getPhoneNumber().substring(6,10)));
-				tradingRecordMapper.insert(tradingRecord);
-				logger.info("提交后余额："+JSON.toJSONString(assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber())));
-				return SUCCESS(null, tradingRecord);
+				if (type.equals("充值")||type.equals("理财到期转出")||type.equals("提现")) {
+					asset.setBalance(balance);
+					assetMapper.updateByPrimaryKey(asset);
+					tradingRecord.setTradingRecordId(Long.parseLong(System.currentTimeMillis()+tradingRecord.getPhoneNumber().substring(6,10)));
+					tradingRecordMapper.insert(tradingRecord);
+					logger.info("asset update after："+JSON.toJSONString(assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber())));
+					return SUCCESS(null, tradingRecord);
+				}
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		return FAIL("insertRecord fail");
+		return FAIL("insertRecord FAIL");
 	}
 	
 	@ResponseBody

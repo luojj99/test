@@ -32,12 +32,12 @@ public class UserControllerTest extends BaseTest {
 //	public void testFixUpdateMethod() {
 //		fail("Not yet implemented");
 //	}
-
-	@Test
-	public void testIsRegistered() {
-		BaseBean baseBean=userController.isRegistered("13800138000");
-		Assert.assertEquals(0, baseBean.getErrorCode());
-	}
+//
+//	@Test
+//	public void testIsRegistered() {
+//		BaseBean baseBean=userController.isRegistered("13800138000");
+//		Assert.assertEquals(0, baseBean.getErrorCode());
+//	}
 
 	
 
