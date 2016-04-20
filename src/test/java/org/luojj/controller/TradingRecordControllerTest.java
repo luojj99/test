@@ -25,12 +25,12 @@ public class TradingRecordControllerTest extends BaseTest{
 	public void testInsertRecord() {
 		String phoneNumber ="13800138000";
 		BigDecimal addaount= new BigDecimal("10");
-		//插入前
+		//插入前balance
 		BigDecimal balanceBefore=assetMapper.selectByPrimaryKey(phoneNumber).getBalance();
 		
 		TradingRecord tradingRecord = new TradingRecord();
 		tradingRecord.setPhoneNumber(phoneNumber);
-		tradingRecord.setTradingType("充值");
+		tradingRecord.setTradingType("CZ");
 		tradingRecord.setTradingAmount(addaount);
 		logger.info("："+JSON.toJSONString(tradingRecord));
 		tradingRecordController.insertRecord(tradingRecord);

@@ -37,21 +37,23 @@ public class TradingRecordController extends BaseController{
 	public BaseBean insertRecord(@RequestBody TradingRecord tradingRecord
 			){
 		try {
-			logger.info("tradingRecord："+JSON.toJSONString(tradingRecord));
+			logger.info("tradingRecord:"+JSON.toJSONString(tradingRecord));
 			Asset asset= assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber());
-			logger.info("asset update before："+JSON.toJSONString(asset));
+			logger.info("asset update before:"+JSON.toJSONString(asset));
 			String type=tradingRecord.getTradingType();
-			//类型：充值、提现、理财购买、理财变现、理财到期转出
+			//类型：充值CZ、提现TX、理财购买、理财变现、理财到期转出LCDQZC
 			if (asset!=null) {
-				
+				logger.info("asset!=null");
 				BigDecimal tradingAmount=tradingRecord.getTradingAmount();
 				BigDecimal balance= asset.getBalance();
-				if (type.equals("充值")||type.equals("理财到期转出")) {
+				if (type.equals("CZ")||type.equals("LCDQZC")) {
+					logger.info("type.equals('CZ')||type.equals('LCDQZC')");
 					balance=balance.add(tradingAmount);
-				}else if (type.equals("提现")) {
+				}else if (type.equals("TX")) {
+					logger.info("type.equals(TX)");
 					balance=balance.subtract(tradingAmount);
 				}
-				if (type.equals("充值")||type.equals("理财到期转出")||type.equals("提现")) {
+				if (type.equals("CZ")||type.equals("LCDQZC")||type.equals("TX")) {
 					asset.setBalance(balance);
 					assetMapper.updateByPrimaryKey(asset);
 					tradingRecord.setTradingRecordId(Long.parseLong(System.currentTimeMillis()+tradingRecord.getPhoneNumber().substring(6,10)));
