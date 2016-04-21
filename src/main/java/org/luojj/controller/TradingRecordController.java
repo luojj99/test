@@ -92,13 +92,15 @@ public class TradingRecordController extends BaseController{
 		try {
 			User user = userMapper.selectByPrimaryKey(phoneNumber);
 			if (user!=null) {
-				recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
-				map.put("recordList", recordList);
-				map.put("errorCode", 0);
-				return map;
+				recordList = tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
+				if (recordList!=null) {
+					recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
+					map.put("recordList", recordList);
+					map.put("errorCode", 0);
+					return map;
+				}
+				
 			}
-			
-			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
