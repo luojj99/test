@@ -1,5 +1,6 @@
 package org.luojj.controller;
 
+import org.luojj.baseclass.BaseController;
 import org.luojj.dao.BondMapper;
 import org.luojj.dao.FundMapper;
 import org.luojj.entity.Order;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class OrderController {
+public class OrderController extends BaseController{
 	@Autowired
 	private BondMapper bondMapper;
 	@Autowired

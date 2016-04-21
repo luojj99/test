@@ -50,9 +50,18 @@ public class TradingRecordController extends BaseController{
 				BigDecimal balance= asset.getBalance();
 				if (type.equals("CZ")||type.equals("LCDQZC")) {
 					logger.info("type.equals('CZ')||type.equals('LCDQZC')");
+					if (type.equals("CZ")) {
+						tradingRecord.setTradingType("充值");
+					}
+					if (type.equals("LCDQZC")) {
+						tradingRecord.setTradingType("理财到期转出");
+					}
 					balance=balance.add(tradingAmount);
 				}else if (type.equals("TX")) {
 					logger.info("type.equals(TX)");
+					if (type.equals("TX")) {
+						tradingRecord.setTradingType("提现");
+					}
 					balance=balance.subtract(tradingAmount);
 				}
 				if (type.equals("CZ")||type.equals("LCDQZC")||type.equals("TX")) {
@@ -78,9 +87,11 @@ public class TradingRecordController extends BaseController{
 		List<TradingRecord> recordList =  new ArrayList<TradingRecord>();
 		try {
 			recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
-			map.put("recordList", recordList);
-			map.put("errorCode", 0);
-			return map;
+			if (recordList!=null) {
+				map.put("recordList", recordList);
+				map.put("errorCode", 0);
+				return map;
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

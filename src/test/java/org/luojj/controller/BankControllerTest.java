@@ -1,26 +1,26 @@
-package org.luojj.controller;
-
-import static org.junit.Assert.*;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.luojj.dao.BankCardMapper;
-import org.luojj.dao.UserMapper;
-import org.luojj.entity.BankCard;
-import org.luojj.test.BaseTest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-
-public class BankControllerTest extends BaseTest{
-	
-	@Autowired
-	private UserController userController;
-	
-	@Autowired
-	private BankController bankController;
-	
-	@Autowired
-	private BankCardMapper  bankCardMapper;
+//package org.luojj.controller;
+//
+//import static org.junit.Assert.*;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//import org.luojj.dao.BankCardMapper;
+//import org.luojj.dao.UserMapper;
+//import org.luojj.entity.BankCard;
+//import org.luojj.test.BaseTest;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.test.annotation.Rollback;
+//
+//public class BankControllerTest extends BaseTest{
+//	
+//	@Autowired
+//	private UserController userController;
+//	
+//	@Autowired
+//	private BankController bankController;
+//	
+//	@Autowired
+//	private BankCardMapper  bankCardMapper;
 
 //	@Before
 //	public void setUp() throws Exception {
@@ -48,4 +48,4 @@ public class BankControllerTest extends BaseTest{
 //		fail("Not yet implemented");
 //	}
 
-}
+//}
