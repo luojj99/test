@@ -22,7 +22,7 @@ public class TradingRecordControllerTest extends BaseTest{
 	private AssetMapper assetMapper;
 
 	@Test
-	@Rollback(false)
+	
 	public void testInsertRecord() {
 		String phoneNumber ="13800138000";
 		BigDecimal addaount= new BigDecimal("10");
@@ -38,9 +38,10 @@ public class TradingRecordControllerTest extends BaseTest{
 		assertEquals(balanceBefore.add(addaount), assetMapper.selectByPrimaryKey(phoneNumber).getBalance());
 	}
 	
-//	@Test
-//	public void testGetRecordList() {
-//	}
+	@Test
+	public void testGetRecordList() {
+		tradingRecordController.getRecordList("13512300001");
+	}
 	
 	
 

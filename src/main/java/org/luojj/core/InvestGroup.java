@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Entity;
+
 import org.apache.log4j.Logger;
 import org.luojj.controller.TradingRecordController;
 import org.luojj.dao.BondMapper;
@@ -15,9 +17,11 @@ import org.luojj.entity.Fund;
 import org.luojj.entity.Stock;
 import org.luojj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-
+@Entity
 public class InvestGroup {
 	private static Logger logger = Logger.getLogger(InvestGroup.class);
 	@Autowired
@@ -37,13 +41,17 @@ public class InvestGroup {
 	
 	public Map<String, Object> getInvestGroup(String phoneNumber){
 		this.phoneNumber=phoneNumber;
+		System.out.println(11);
+		Map<String, Object> map = new HashMap<String, Object>();
 		User user= userMapper.selectByPrimaryKey(phoneNumber);
+		System.out.println(22);
 		chooseGroup();
 		InvestSystem.recommend(user);
-		Map<String, Object> map = new HashMap<String, Object>();
 		stock.setInvestRate(InvestSystem.STOCK_RATIO);
+		System.out.println(33);
 		bond.setInvestRate(InvestSystem.BOND_RATIO);
 		fund.setInvestRate(InvestSystem.FUND_RATIO);
+		System.out.println(44);
 		map.put("bond", bond);
 		map.put("fund", fund);
 		map.put("stock", stock);
@@ -58,9 +66,9 @@ public class InvestGroup {
 	
 	
 	public void chooseGroup(){
-		 stock = stockMapper.selectByPrimaryKey(11L);
-	      bond = bondMapper.selectByPrimaryKey(31L);
-	      fund = fundMapper.selectByPrimaryKey(21L);
+		 this.stock = stockMapper.selectByPrimaryKey(11L);
+	      this.bond = bondMapper.selectByPrimaryKey(31L);
+	      this.fund = fundMapper.selectByPrimaryKey(21L);
 	}
 	
 	public void calAverageRate(){

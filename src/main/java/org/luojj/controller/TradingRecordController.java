@@ -93,10 +93,20 @@ public class TradingRecordController extends BaseController{
 			User user = userMapper.selectByPrimaryKey(phoneNumber);
 			if (user!=null) {
 				recordList = tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
-				if (recordList!=null) {
+				logger.info("判空1："+recordList.isEmpty());
+				
+				if (recordList.isEmpty()) {
+					map.put("errorCode", 1);
+					map.put("message", "recordList is empty");
+					logger.info(JSON.toJSONString(map));
+					return map;
+				}else {
+					logger.info("判空2："+recordList.isEmpty());
+					System.out.println(recordList.isEmpty());
 					recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
 					map.put("recordList", recordList);
 					map.put("errorCode", 0);
+					logger.info(JSON.toJSONString(map));
 					return map;
 				}
 				
@@ -105,7 +115,8 @@ public class TradingRecordController extends BaseController{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		map.put("errorCode", 1);
+		map.put("errorCode", 2);
+		logger.info(JSON.toJSONString(map));
 		return map;
 	}
 
