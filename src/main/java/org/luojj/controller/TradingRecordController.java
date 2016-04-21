@@ -11,8 +11,10 @@ import org.luojj.baseclass.BaseBean;
 import org.luojj.baseclass.BaseController;
 import org.luojj.dao.AssetMapper;
 import org.luojj.dao.TradingRecordMapper;
+import org.luojj.dao.UserMapper;
 import org.luojj.entity.Asset;
 import org.luojj.entity.TradingRecord;
+import org.luojj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +35,8 @@ public class TradingRecordController extends BaseController{
 	private TradingRecordMapper tradingRecordMapper;
 	@Autowired
 	private AssetMapper assetMapper;
+	@Autowired
+	private UserMapper userMapper;
 	
 	@ResponseBody
 	@RequestMapping(value="/insert",method=RequestMethod.POST,headers={"content-type=application/json","content-type=application/xml"})
@@ -86,12 +90,15 @@ public class TradingRecordController extends BaseController{
 		Map<String, Object>map= new HashMap<String, Object>();
 		List<TradingRecord> recordList =  new ArrayList<TradingRecord>();
 		try {
-			recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
-			if (recordList!=null) {
+			User user = userMapper.selectByPrimaryKey(phoneNumber);
+			if (user!=null) {
+				recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
 				map.put("recordList", recordList);
 				map.put("errorCode", 0);
 				return map;
 			}
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
