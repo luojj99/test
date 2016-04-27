@@ -11,7 +11,8 @@ public interface TradingRecordMapper {
      *
      * @mbggenerated
      */
-	  List<TradingRecord> getRecordListByPhoneNo(String phoneNumber);
+	List<TradingRecord> getRecordListByPhoneNo(String phoneNumber);
+	
     int deleteByPrimaryKey(Long tradingRecordId);
 
     /**

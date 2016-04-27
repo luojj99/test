@@ -2,6 +2,9 @@ package org.luojj.core;
 
 import java.math.BigDecimal;
 
+import org.luojj.entity.Bond;
+import org.luojj.entity.Fund;
+import org.luojj.entity.Stock;
 import org.luojj.entity.User;
 
 
@@ -58,6 +61,17 @@ public class InvestSystem {
 		InvestSystem.BOND_RATIO=new BigDecimal(String.valueOf(bond));
 		
 	}
+	
+	
+//	public static void chooseInvestGroup(){
+//		Stock stock=stockMapper.selectByPrimaryKey(11L);
+//		stock.setInvestRate(InvestSystem.STOCK_RATIO);
+//		System.out.println(33);
+//		Bond bond =bondMapper.selectByPrimaryKey(31L);;
+//		bond.setInvestRate(InvestSystem.BOND_RATIO);
+//		Fund fund =fundMapper.selectByPrimaryKey(21L);
+//		fund.setInvestRate(InvestSystem.FUND_RATIO);
+//	}
 	
 	
 }

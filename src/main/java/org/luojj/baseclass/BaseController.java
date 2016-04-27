@@ -4,6 +4,7 @@ package org.luojj.baseclass;
 import static org.luojj.util.Util.Str2Json;
 
 import java.awt.List;
+import java.util.Map;
 
 import org.luojj.util.Util;
 
@@ -36,6 +37,10 @@ public class BaseController {
 	public static BaseBean SUCCESS(){
 		return Util.SUCCESS();
 	}
+	
+//	public static Map<String, Object> SUCCESS(Map<String, Object> map){
+//		
+//	}
 	
 
 	

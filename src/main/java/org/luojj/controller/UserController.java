@@ -61,13 +61,19 @@ public class UserController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value="isRegistered/{phoneNumber}",method=RequestMethod.GET)
 	public BaseBean isRegistered(@PathVariable String phoneNumber){
-		 boolean isRegistered=userService.isRegistered(phoneNumber);
-		 logger.info(isRegistered);
-		if (isRegistered) {
+		try {
 			
-			return SUCCESS("registered");
+			boolean isRegistered=userService.isRegistered(phoneNumber);
+			logger.info(isRegistered);
+			if (isRegistered) {
+				return SUCCESS("registered");
+			}
+			return FAIL("unregistered");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
-		return FAIL("unregistered");
+		return FAIL("phoneNumber null or invalid");
 	}
 	
 	
@@ -75,6 +81,7 @@ public class UserController extends BaseController{
 	@RequestMapping(value="choose/phoneNumber/{phoneNumber}/loginPassword/{loginPassword}",method=RequestMethod.GET)
 	public BaseBean choose(@PathVariable String phoneNumber,
     		@PathVariable String loginPassword){
+		
 		boolean isRegistered = userService.isRegistered(phoneNumber);
 		if (isRegistered) {
 			return login(phoneNumber, loginPassword);
@@ -96,11 +103,12 @@ public class UserController extends BaseController{
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-			return  FAIL("password null");
+			return  FAIL("password or phoneNumber null");
 		        
     }
     
     public  BaseBean register(String phoneNumber, String loginPassword)  {
+    	
     	User user=userService.register(phoneNumber, loginPassword);
     	if (user==null) {
     		return FAIL("register fail");
@@ -120,14 +128,14 @@ public class UserController extends BaseController{
     		User afterUpdateUser = userService.getUser(user.getPhoneNumber());
         	if (status==1) {
         		logger.info("更新后数据库数据："+JSON.toJSONString(afterUpdateUser));
-    			return SUCCESS("update success:",afterUpdateUser);
+    			return SUCCESS("user info update success:",afterUpdateUser);
     		}
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		logger.info("更新失败");
-		return FAIL("update fail");
+		return FAIL("user info update fail");
     }
     
     

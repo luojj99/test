@@ -55,6 +55,7 @@ public class BankController extends BaseController{
 		try {
 			User user=userMapper.selectByPrimaryKey(bankCard.getPhoneNumber());
 			if (user!=null) {
+				
 				user.setTradingPassword(tradingPassword);
 				user.setRealName(bankCard.getRealName());
 				user.setIdCardNumber(idCardNumber);

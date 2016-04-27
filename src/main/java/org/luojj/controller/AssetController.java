@@ -57,7 +57,7 @@ public class AssetController extends BaseController{
 			int status=assetMapper.insert(asset);
 			if (status==1&&user!=null) {
 				
-				return SUCCESS("insert success:",assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
+				return SUCCESS("asset insert success:",assetMapper.selectByPrimaryKey(asset.getPhoneNumber()));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -16,7 +16,7 @@ public class RiskScorer {
 	private final double INVEST_WEIGHT = 0.35;
 
 	public void init(User user) {
-		this.age = user.getAge();
+		this.age = user.getAge()== null? null:user.getAge();
 		this.marriage = user.getMarriage()== null? null:user.getMarriage().trim();
 		this.incomeLevel = user.getIncomeLevel()== null? null:user.getIncomeLevel().trim();
 		this.investmentStyle = user.getInvestmentStyle()== null? null:user.getInvestmentStyle().trim();
@@ -105,6 +105,9 @@ public class RiskScorer {
 
 	public double getAgeScore() {
 		double ageScore = 0;
+		if (age==null) {
+			return ageScore;
+		}
 		if (age >= 18 && age <= 23) {
 			ageScore = 15 * AGE_WEIGHT;
 		}

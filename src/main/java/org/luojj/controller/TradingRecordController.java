@@ -1,6 +1,7 @@
 package org.luojj.controller;
 
 import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +53,7 @@ public class TradingRecordController extends BaseController{
 				logger.info("asset!=null");
 				BigDecimal tradingAmount=tradingRecord.getTradingAmount();
 				BigDecimal balance= asset.getBalance();
+				BigDecimal totalAsset=asset.getTotalAsset();
 				if (type.equals("CZ")||type.equals("LCDQZC")) {
 					logger.info("type.equals('CZ')||type.equals('LCDQZC')");
 					if (type.equals("CZ")) {
@@ -61,18 +63,22 @@ public class TradingRecordController extends BaseController{
 						tradingRecord.setTradingType("理财到期转出");
 					}
 					balance=balance.add(tradingAmount);
+					totalAsset=totalAsset.add(tradingAmount);
 				}else if (type.equals("TX")) {
 					logger.info("type.equals(TX)");
 					if (type.equals("TX")) {
 						tradingRecord.setTradingType("提现");
 					}
 					balance=balance.subtract(tradingAmount);
+					totalAsset=totalAsset.subtract(tradingAmount);
 				}
 				if (type.equals("CZ")||type.equals("LCDQZC")||type.equals("TX")) {
 					asset.setBalance(balance);
+					asset.setTotalAsset(totalAsset);
 					assetMapper.updateByPrimaryKey(asset);
 					tradingRecord.setTradingRecordId(Long.parseLong(System.currentTimeMillis()+tradingRecord.getPhoneNumber().substring(6,10)));
 					tradingRecordMapper.insert(tradingRecord);
+					logger.info("isnert into db:"+JSON.toJSONString(tradingRecord));
 					logger.info("asset update after："+JSON.toJSONString(assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber())));
 					return SUCCESS(null, tradingRecord);
 				}
