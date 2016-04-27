@@ -23,11 +23,22 @@
     create_time, payment_type
   </sql>
   
-   
+   <!-- 获得充值列表 -->
+  <select id="getCZRecordList" resultMap="BaseResultMap"  >
+    select * from trading_record where phone_number = #{phoneNumber} and trading_type = "CZ"
+  </select>
+  
+  <select id="getLCGMRecordList" resultMap="BaseResultMap"  >
+    select * from trading_record where phone_number = #{phoneNumber} and trading_type = "LCGM"
+  </select>
+  
+   <select id="getTXRecordList" resultMap="BaseResultMap"  >
+    select * from trading_record where phone_number = #{phoneNumber} and trading_type = "TX"
+  </select>
+  
+  
   <select id="getRecordListByPhoneNo" resultMap="BaseResultMap" parameterType="string" >
-   
-   
-    select * from trading_record where phone_number = #{phoneNumber}
+    select * from trading_record where trading_type = #{tradingType}
   </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

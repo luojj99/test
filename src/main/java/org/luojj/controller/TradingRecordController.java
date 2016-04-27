@@ -191,5 +191,73 @@ public class TradingRecordController extends BaseController {
 		logger.info(JSON.toJSONString(map));
 		return map;
 	}
+	
+	/**
+	 * 提现列表
+	 * @param phoneNumber
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getTXRecord/{phoneNumber}", method = RequestMethod.GET)
+	public Map<String, Object> getTXRecord(String phoneNumber){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<TradingRecord>list=tradingRecordMapper.getTXRecordList(phoneNumber);
+		if (list.isEmpty()) {
+			map.put("errorCode", 1);
+			map.put("errorMsg", "TXRecordList is null");
+			return map;
+		}
+		map.put("errorCode", 0);
+		map.put("data", list);
+		
+		return map;
+	}
+	
+	
+	/**
+	 * 充值列表
+	 * @param phoneNumber
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getCZRecord/{phoneNumber}", method = RequestMethod.GET)
+	public Map<String, Object> getCZRecord(String phoneNumber){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<TradingRecord>list=tradingRecordMapper.getCZRecordList(phoneNumber);
+		if (list.isEmpty()) {
+			map.put("errorCode", 1);
+			map.put("errorMsg", "CZRecordList is null");
+			return map;
+		}
+		map.put("errorCode", 0);
+		map.put("data", list);
+		
+		return map;
+	}
+	
+	
+	/**
+	 * 购买列表
+	 * @param phoneNumber
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getLCGMRecord/{phoneNumber}", method = RequestMethod.GET)
+	public Map<String, Object> getLCGMRecord(String phoneNumber){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<TradingRecord>list=tradingRecordMapper.getLCGMRecordList(phoneNumber);
+		if (list.isEmpty()) {
+			map.put("errorCode", 1);
+			map.put("errorMsg", "LCGMRecordList is null");
+			return map;
+		}
+		map.put("errorCode", 0);
+		map.put("data", list);
+		
+		return map;
+	}
 
 }

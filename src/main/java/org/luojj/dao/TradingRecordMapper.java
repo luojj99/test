@@ -2,6 +2,7 @@ package org.luojj.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.luojj.entity.TradingRecord;
 
 public interface TradingRecordMapper {
@@ -11,6 +12,12 @@ public interface TradingRecordMapper {
      *
      * @mbggenerated
      */
+	
+	List<TradingRecord> getLCGMRecordList(@Param("phoneNumber")String phoneNumber);
+	List<TradingRecord> getTXRecordList(@Param("phoneNumber")String phoneNumber);
+	
+	List<TradingRecord> getCZRecordList(@Param("phoneNumber")String phoneNumber);
+	
 	List<TradingRecord> getRecordListByPhoneNo(String phoneNumber);
 	
     int deleteByPrimaryKey(Long tradingRecordId);
