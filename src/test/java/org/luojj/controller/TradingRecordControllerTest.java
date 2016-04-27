@@ -21,28 +21,28 @@ public class TradingRecordControllerTest extends BaseTest{
 	@Autowired
 	private AssetMapper assetMapper;
 
-	@Test
-	@Rollback(false)
-	public void testInsertRecord() {
-		String phoneNumber ="13800138000";
-		BigDecimal addaount= new BigDecimal("10");
-		//插入前balance
-		BigDecimal balanceBefore=assetMapper.selectByPrimaryKey(phoneNumber).getBalance();
-		
-		TradingRecord tradingRecord = new TradingRecord();
-		tradingRecord.setPhoneNumber(phoneNumber);
-		tradingRecord.setTradingType("CZ");
-		tradingRecord.setTradingAmount(addaount);
-		tradingRecordController.insertRecord(tradingRecord);
-		
-		assertEquals(balanceBefore.add(addaount), assetMapper.selectByPrimaryKey(phoneNumber).getBalance());
-	}
-	
-	@Test
-	public void testGetRecordList() {
-		tradingRecordController.getRecordList("13512300001");
-	}
-	
+//	@Test
+//	@Rollback(false)
+//	public void testInsertRecord() {
+//		String phoneNumber ="13800138000";
+//		BigDecimal addaount= new BigDecimal("10");
+//		//插入前balance
+//		BigDecimal balanceBefore=assetMapper.selectByPrimaryKey(phoneNumber).getBalance();
+//		
+//		TradingRecord tradingRecord = new TradingRecord();
+//		tradingRecord.setPhoneNumber(phoneNumber);
+//		tradingRecord.setTradingType("CZ");
+//		tradingRecord.setTradingAmount(addaount);
+//		tradingRecordController.insertRecord(tradingRecord);
+//		
+//		assertEquals(balanceBefore.add(addaount), assetMapper.selectByPrimaryKey(phoneNumber).getBalance());
+//	}
+//	
+//	@Test
+//	public void testGetRecordList() {
+//		tradingRecordController.getRecordList("13512300001");
+//	}
+//	
 	
 
 }

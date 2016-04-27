@@ -23,6 +23,7 @@ import org.luojj.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,14 +51,19 @@ public class InvestGroupController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "/investgroup/select/{phoneNumber}", method = RequestMethod.GET)
-	public Map<String, Object> getInvestGroup(@PathVariable String phoneNumber) {
+	public Map<String, Object> getInvestGroup(@RequestBody String phoneNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			User user = userMapper.selectByPrimaryKey(phoneNumber);
 			System.out.println(1);
 			if (user!=null) {
-				map=getNewInvestGroup(phoneNumber);
-				map.put("errorCode", 0);
+				InvestGroup investGroup = investGroupMapper.getLatestInvestGroup(phoneNumber);
+				if (investGroup==null) {
+					map=createInvestGroup(phoneNumber);
+				}else{
+					map=getLatestInvestGroup(phoneNumber);
+				}
+					map.put("errorCode", 0);
 				return map;
 			}
 		} catch (Exception e) {
@@ -70,7 +76,26 @@ public class InvestGroupController extends BaseController {
 	}
 	
 	
-	public Map<String, Object> getNewInvestGroup(String phoneNumber){
+	public Map<String, Object> getLatestInvestGroup(String phoneNumber){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		InvestGroup investGroup = investGroupMapper.getLatestInvestGroup(phoneNumber);
+		Bond bond = bondMapper.selectByPrimaryKey(investGroup.getLowRiskId());
+		Stock stock = stockMapper.selectByPrimaryKey(investGroup.getHighRiskId());
+		Fund fund = fundMapper.selectByPrimaryKey(investGroup.getMiddleRiskId());
+		map.put("bond", bond);
+		map.put("fund", fund);
+		map.put("stock", stock);
+		map.put("phoneNumber", phoneNumber);
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	public Map<String, Object> createInvestGroup(String phoneNumber){
 		
 		System.out.println(11);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -87,6 +112,7 @@ public class InvestGroupController extends BaseController {
 		bond.setInvestRate(InvestSystem.BOND_RATIO);
 		Fund fund =fundMapper.selectByPrimaryKey(21L);
 		fund.setInvestRate(InvestSystem.FUND_RATIO);
+		System.out.println(fund.getInvestRate());
 		
 		//计算收益
 		System.out.println(33.1);
@@ -98,13 +124,18 @@ public class InvestGroupController extends BaseController {
 		System.out.println(33.2);
 		InvestGroup investGroup = new InvestGroup();
 		investGroup.setLowRiskId(bond.getProductId());
+		investGroup.setLowRiskRatio(InvestSystem.BOND_RATIO);
 		investGroup.setMiddleRiskId(fund.getProductId());
+		investGroup.setMiddleRiskRatio(InvestSystem.FUND_RATIO);
 		investGroup.setHighRiskId(stock.getProductId());
+		investGroup.setHighRiskRatio(InvestSystem.STOCK_RATIO);
 		investGroup.setGroupProfit(groupProfit);
 		System.out.println(33.3);
 		investGroup.setPhoneNumber(phoneNumber);
 		investGroup.setInvestGroupId(Long.parseLong(System.currentTimeMillis()+""+bond.getProductId()));
 		investGroup.setIsRecommend(1);
+		
+		//插入到推荐组合
 		investGroupMapper.insert(investGroup);
 		System.out.println(44);
 		map.put("bond", bond);

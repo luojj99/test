@@ -64,10 +64,10 @@ public class OrderController extends BaseController{
 		//统计订单收益
 		System.out.println(1);
 //		InvestGroupController investGroupController = new InvestGroupController();
-		investGroupController.getNewInvestGroup(order.getPhoneNumber());
-		BigDecimal bondProfit=bond.getInvestRate().multiply(bond.getChangePrice()).multiply(orderAmount).divide(bond.getBondPrice(),10,BigDecimal.ROUND_HALF_DOWN);
-		BigDecimal fundProfit=fund.getInvestRate().multiply(fund.getChangePrice()).multiply(orderAmount).divide(fund.getFundPrice(),10,BigDecimal.ROUND_HALF_DOWN);
-		BigDecimal stockProfit=stock.getInvestRate().multiply(stock.getChangePrice()).multiply(orderAmount).divide(stock.getStockPrice(),10,BigDecimal.ROUND_HALF_DOWN);
+		investGroupController.createInvestGroup(order.getPhoneNumber());
+		BigDecimal bondProfit=investGroup.getLowRiskRatio().multiply(bond.getChangePrice()).multiply(orderAmount).divide(bond.getBondPrice(),10,BigDecimal.ROUND_HALF_DOWN);
+		BigDecimal fundProfit=investGroup.getMiddleRiskRatio().multiply(fund.getChangePrice()).multiply(orderAmount).divide(fund.getFundPrice(),10,BigDecimal.ROUND_HALF_DOWN);
+		BigDecimal stockProfit=investGroup.getHighRiskRatio().multiply(stock.getChangePrice()).multiply(orderAmount).divide(stock.getStockPrice(),10,BigDecimal.ROUND_HALF_DOWN);
 	    BigDecimal yesterdayProfit=bondProfit.add(fundProfit).add(stockProfit);
 	    System.out.println(2);
 	    order.setYesterdayProfit(yesterdayProfit);

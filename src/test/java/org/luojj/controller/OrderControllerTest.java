@@ -32,7 +32,7 @@ public class OrderControllerTest extends BaseTest{
 		System.out.println(1111111);
 		order.setActualAmount(new BigDecimal("1000"));
 		//InvestGroup investGroup = investGroupMapper.selectByPrimaryKey(146167836283331L);
-		order.setInvestGroupId(146167836283331L);
+		order.setInvestGroupId(146174485776731L);
 		System.out.println(2222);
 		order.setPaymentType("BANKCARD");
 		System.out.println(33333);

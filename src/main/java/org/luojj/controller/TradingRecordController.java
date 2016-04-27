@@ -27,34 +27,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-
 @Controller
 @RequestMapping("/record")
-public class TradingRecordController extends BaseController{
-	private static Logger logger = Logger.getLogger(TradingRecordController.class);  
+public class TradingRecordController extends BaseController {
+	private static Logger logger = Logger
+			.getLogger(TradingRecordController.class);
 	@Autowired
 	private TradingRecordMapper tradingRecordMapper;
 	@Autowired
 	private AssetMapper assetMapper;
 	@Autowired
 	private UserMapper userMapper;
-	
+
 	@ResponseBody
-	@RequestMapping(value="/insert",method=RequestMethod.POST,headers={"content-type=application/json","content-type=application/xml"})
-	public BaseBean insertRecord(@RequestBody TradingRecord tradingRecord
-			){
+	@RequestMapping(value = "/insert", method = RequestMethod.POST, headers = {
+			"content-type=application/json", "content-type=application/xml" })
+	public BaseBean insertRecord(@RequestBody TradingRecord tradingRecord) {
 		try {
-			logger.info("tradingRecord:"+JSON.toJSONString(tradingRecord));
-			Asset asset= assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber());
-			logger.info("asset update before:"+JSON.toJSONString(asset));
-			String type=tradingRecord.getTradingType();
-			//类型：充值CZ、提现TX、理财购买、理财变现、理财到期转出LCDQZC
-			if (asset!=null) {
+			logger.info("tradingRecord:" + JSON.toJSONString(tradingRecord));
+			Asset asset = assetMapper.selectByPrimaryKey(tradingRecord
+					.getPhoneNumber());
+			logger.info("asset update before:" + JSON.toJSONString(asset));
+			String type = tradingRecord.getTradingType();
+			// 类型：充值CZ、提现TX、理财购买、理财变现、理财到期转出LCDQZC
+			if (asset != null) {
 				logger.info("asset!=null");
-				BigDecimal tradingAmount=tradingRecord.getTradingAmount();
-				BigDecimal balance= asset.getBalance();
-				BigDecimal totalAsset=asset.getTotalAsset();
-				if (type.equals("CZ")||type.equals("LCDQZC")) {
+				BigDecimal tradingAmount = tradingRecord.getTradingAmount();
+				BigDecimal balance = asset.getBalance();
+				BigDecimal totalAsset = asset.getTotalAsset();
+				if (type.equals("CZ") || type.equals("LCDQZC")) {
 					logger.info("type.equals('CZ')||type.equals('LCDQZC')");
 					if (type.equals("CZ")) {
 						tradingRecord.setTradingType("充值");
@@ -62,24 +63,31 @@ public class TradingRecordController extends BaseController{
 					if (type.equals("LCDQZC")) {
 						tradingRecord.setTradingType("理财到期转出");
 					}
-					balance=balance.add(tradingAmount);
-					totalAsset=totalAsset.add(tradingAmount);
-				}else if (type.equals("TX")) {
+					balance = balance.add(tradingAmount);
+					totalAsset = totalAsset.add(tradingAmount);
+				} else if (type.equals("TX")) {
 					logger.info("type.equals(TX)");
 					if (type.equals("TX")) {
 						tradingRecord.setTradingType("提现");
 					}
-					balance=balance.subtract(tradingAmount);
-					totalAsset=totalAsset.subtract(tradingAmount);
+					balance = balance.subtract(tradingAmount);
+					totalAsset = totalAsset.subtract(tradingAmount);
 				}
-				if (type.equals("CZ")||type.equals("LCDQZC")||type.equals("TX")) {
+				if (type.equals("CZ") || type.equals("LCDQZC")
+						|| type.equals("TX")) {
 					asset.setBalance(balance);
 					asset.setTotalAsset(totalAsset);
 					assetMapper.updateByPrimaryKey(asset);
-					tradingRecord.setTradingRecordId(Long.parseLong(System.currentTimeMillis()+tradingRecord.getPhoneNumber().substring(6,10)));
+					tradingRecord.setTradingRecordId(Long.parseLong(System
+							.currentTimeMillis()
+							+ tradingRecord.getPhoneNumber().substring(6, 10)));
 					tradingRecordMapper.insert(tradingRecord);
-					logger.info("isnert into db:"+JSON.toJSONString(tradingRecord));
-					logger.info("asset update after："+JSON.toJSONString(assetMapper.selectByPrimaryKey(tradingRecord.getPhoneNumber())));
+					logger.info("isnert into db:"
+							+ JSON.toJSONString(tradingRecord));
+					logger.info("asset update after："
+							+ JSON.toJSONString(assetMapper
+									.selectByPrimaryKey(tradingRecord
+											.getPhoneNumber())));
 					return SUCCESS(null, tradingRecord);
 				}
 			}
@@ -89,33 +97,91 @@ public class TradingRecordController extends BaseController{
 		}
 		return FAIL("insertRecord FAIL");
 	}
-	
+
+	public BaseBean insertRecordTest(@RequestBody TradingRecord tradingRecord) {
+		try {
+			logger.info("tradingRecord:" + JSON.toJSONString(tradingRecord));
+			Asset asset = assetMapper.selectByPrimaryKey(tradingRecord
+					.getPhoneNumber());
+			logger.info("asset update before:" + JSON.toJSONString(asset));
+			String type = tradingRecord.getTradingType();
+			// 类型：充值CZ、提现TX、理财购买、理财变现、理财到期转出LCDQZC
+			if (asset != null) {
+				logger.info("asset!=null");
+				BigDecimal tradingAmount = tradingRecord.getTradingAmount();
+				BigDecimal balance = asset.getBalance();
+				BigDecimal totalAsset = asset.getTotalAsset();
+				if (type.equals("CZ") || type.equals("LCDQZC")) {
+					logger.info("type.equals('CZ')||type.equals('LCDQZC')");
+//					if (type.equals("CZ")) {
+//						tradingRecord.setTradingType("充值");
+//					}
+//					if (type.equals("LCDQZC")) {
+//						tradingRecord.setTradingType("理财到期转出");
+//					}
+					balance = balance.add(tradingAmount);
+					totalAsset = totalAsset.add(tradingAmount);
+				} else if (type.equals("TX")) {
+					logger.info("type.equals(TX)");
+//					if (type.equals("TX")) {
+//						tradingRecord.setTradingType("提现");
+//					}
+					balance = balance.subtract(tradingAmount);
+					totalAsset = totalAsset.subtract(tradingAmount);
+				}
+				if (type.equals("CZ") || type.equals("LCDQZC")
+						|| type.equals("TX")) {
+					asset.setBalance(balance);
+					asset.setTotalAsset(totalAsset);
+					assetMapper.updateByPrimaryKey(asset);
+					tradingRecord.setTradingRecordId(Long.parseLong(System
+							.currentTimeMillis()
+							+ tradingRecord.getPhoneNumber().substring(6, 10)));
+					tradingRecordMapper.insert(tradingRecord);
+					logger.info("isnert into db:"
+							+ JSON.toJSONString(tradingRecord));
+					logger.info("asset update after："
+							+ JSON.toJSONString(assetMapper
+									.selectByPrimaryKey(tradingRecord
+											.getPhoneNumber())));
+					return SUCCESS(null, tradingRecord);
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return FAIL("insertRecord FAIL");
+	}
+
 	@ResponseBody
-	@RequestMapping(value="/getRecordList/{phoneNumber}",method=RequestMethod.GET)
-	public Map<String, Object> getRecordList(@PathVariable String phoneNumber){
-		Map<String, Object>map= new HashMap<String, Object>();
-		List<TradingRecord> recordList =  new ArrayList<TradingRecord>();
+	@RequestMapping(value = "/getRecordList/{phoneNumber}", method = RequestMethod.GET)
+	public Map<String, Object> getRecordList(@PathVariable String phoneNumber) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<TradingRecord> recordList = new ArrayList<TradingRecord>();
 		try {
 			User user = userMapper.selectByPrimaryKey(phoneNumber);
-			if (user!=null) {
-				recordList = tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
-				logger.info("判空1："+recordList.isEmpty());
-				
+			if (user != null) {
+				recordList = tradingRecordMapper
+						.getRecordListByPhoneNo(phoneNumber);
+				logger.info("判空1：" + recordList.isEmpty());
+
 				if (recordList.isEmpty()) {
 					map.put("errorCode", 1);
 					map.put("message", "recordList is empty");
 					logger.info(JSON.toJSONString(map));
 					return map;
-				}else {
-					logger.info("判空2："+recordList.isEmpty());
+				} else {
+					logger.info("判空2：" + recordList.isEmpty());
 					System.out.println(recordList.isEmpty());
-					recordList =tradingRecordMapper.getRecordListByPhoneNo(phoneNumber);
+					recordList = tradingRecordMapper
+							.getRecordListByPhoneNo(phoneNumber);
 					map.put("recordList", recordList);
 					map.put("errorCode", 0);
 					logger.info(JSON.toJSONString(map));
 					return map;
 				}
-				
+
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
