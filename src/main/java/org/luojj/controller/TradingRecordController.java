@@ -63,6 +63,7 @@ public class TradingRecordController extends BaseController {
 					if (type.equals("LCDQZC")) {
 						tradingRecord.setTradingType("理财到期转出");
 					}
+					//fs
 					balance = balance.add(tradingAmount);
 					totalAsset = totalAsset.add(tradingAmount);
 				} else if (type.equals("TX")) {
